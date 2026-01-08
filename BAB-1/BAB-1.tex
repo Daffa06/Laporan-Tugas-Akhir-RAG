@@ -1,0 +1,66 @@
+%\renewcommand{\thefootnote}{\arabic{footnote}}
+\chapter{PENDAHULUAN}
+\label{BAB1:pendahuluan}
+
+\section{Latar Belakang}
+ Pengelolaan dokumen regulasi universitas merupakan hal penting dalam tata kelola akademik dan administratif. Dokumen seperti peraturan rektor, pedoman akademik maupun kebijakan fakultas bersifat dinamis dan terus ada perubahan seiring dengan perkembangan kebijakan pendidikan tinggi. 
+ Perubahan tersebut bisa berupa revisi parsial, pembaruan pasal tertentu saja atau penggatian keseluruhan dokumen. Namun, permasalahan sistem pencarian dokumen regulasi yang umum digunakan berbasis kata kunci (keyword-based retrieval), sehingga sering terjadi gagal membedakan versi dokumen masih berlaku dan tidak bisa menelusuri hubungan antarversi regulasi yang saling terkait. 
+ Hal ini menimbulkan kesulitan bagi civitas akademik dalam memastikan validitas dan relevansi suatu kebijakan universitas.
+
+ Seiring berjalan waktu kemajuan Natural Language Processing (NLP), konsep Retrieval-Augmented Generation (RAG) mulai banyak diaplikasikan untuk menjawab permasalahan akses dan interpretasi dokumen teks yang kompleks. 
+ Konsep ini pertama kali diperkenalkan oleh Lewis et al. (2023), yang menggabungkan metode retrieval berbasis pencarian semantik dengan generation menggunakan Large Language Model (LLM). 
+ melalui gabungan tersebut hasil sistem RAG dapat memberikan jawaban yang bersumber langsung dari dokumen rujukan, sehingga bisa meningkatkan akurasi dan transparansi dalam jawaban.
+
+ Penelitian yang sudah ada menunjukan bahwa RAG memiliki kemampuan adaptif diberbagai ranah. Zhang et al. (2023) mengimplementasikan RAG pada bidang pendidikan (CHAX: A RAG-based Chatbot for Chax Education), sementara Amazou et al. (2025) menerapkannya dalam konteks hukum kontrak untuk meningkatkan akurasi dan kemampuan citation dalam sistem hukum digital.
+ 
+ Meskipun dari hasil penelitian yang sudah memberikan hasil yang menjanjikan, tetapi penelitian tersebut masih berfokus pada dokumen statis ayng tidak memiliki hubungan versi atau konteks temporal yang bisa berubah. 
+ Dalam konteks dokumen regulasi universitas, pendekatan RAG konvesional menghadapi masalah tambahan karena sifat dokumen yang amandatif (dapat berubah sebagian) dan temporal (memiliki periode berlaku). 
+ Kompleksitas ini memiliki permasalahan yang perlu diselesaikan dalam pengembangan asisten digital berbasis RAG untuk regulasi universitas, yaitu:
+
+\begin{enumerate}
+    \item \textbf{Temporal Inconsistency} \\
+    Sistem tidak dapat membedakan konteks waktu dari informasi, sehingga berpotensi memberikan jawaban berdasarkan dokumen yang sudah tidak berlaku.
+
+    \newpage
+
+    \item \textbf{Partial Supersession} \\
+    Perubahan regulasi diuniversitas sifat parsial, dimana hanya beberapa pasal atau ayat yang diperbarui. Sistem RAG tanpa mekanisme pelacakan versi cenderung mencampur versi lama dan baru.
+
+    \item \textbf{Citation Accuracy} \\
+    Ketika sistem tidak memiliki manajemen versi dengan baik, refrensi terhadap sumber regulasi menjadi tidak akurat. Hal ini bisa menimbulkan resiko kesalahan interprentasi terhadap kebijakan yang berlaku.
+
+    \item \textbf{Structural Semantics Loss} \\
+    Dokumen regulasi memiliki struktur yang kompleks jika proses \textit{chunking} dan \textit{embedding} tidak mempertimbangkan struktur sistem akan kehilangan konteks semantik antarbagian dan menurukan semantic retrieval.
+\end{enumerate}
+
+\section{Rumusan Masalah}
+    \begin{enumerate}
+        \renewcommand{\labelenumi}{\Roman{enumi}.}
+
+        \item Bagaimana mengintegrasikan metadata temporal ke dalam RAG sehingga sistem mampu melakukan \textit{version aware retrieval} pada dokumen regulasi universitas, serta membedakan isi regulasi yang masih berlaku dengan telah diganti?
+        
+        \item Metode \textit{chunking} dan \textit{embedding} seperti apa yang efektif untuk mempertahankan struktur semantik dokumen regulasi universitas seperti bab, pasal, ayat dan poin tanpa menurun kemampuan \textit{semantic search} dan kualitas hasil \textit{generation}?
+        
+        \item Bagaimana merancang mekanisme \textit{filtering} dan \textit{ranking} adaptif agar sistem hanya menggunakan regulasi yang masih berlaku secara administratif dalam proses \textit{answer generation}?
+        
+        \item Sejauh mana akurasi dan reabilitas sistem RAG yang digabungkan dengan \textit{version aware} untuk melampaui sistem RAG konvensional dalam menjawab pertanyaan berbasis dokumen regulasi universitas?
+    \end{enumerate}
+ 
+\section{Batasan Masalah}
+
+\section{Tujuan Penelitian}
+    Berdasarkan poin-poin rumusan masalah yang disebutkan, tujuan penelitian ini untuk identifikasi \textit{LLM} mana yang cocok untuk penerapan \textit{version aware retrieval} ini pada \textit{chatbot RAG}
+    untuk menjawab petanyaan pengguna pembagian filter dokumen tersebut supaya jawaban yang diberikan tetap relavan berdasarkan dokumen Universitas Pertamina yang ditanyakan.
+\begin{enumerate}
+    \renewcommand{\labelenumi}{\Roman{enumi}.}
+    \item Mengembangkan mekanisme pelacakan versi dokumen dalam pipeline RAG
+    \item Mengevaluasi efektifitas sistem melalui metrik retrieval dan kualitas jawaban yang diberikan.
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+\lipsum[10] % generate dummy sentences
+\begin{itemize}
+    \item item 1 of An Unordered List
+    \item item 2 of An Unordered List
+    \item item 3 of An Unordered List
+\end{itemize}

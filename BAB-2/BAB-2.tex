@@ -1,0 +1,67 @@
+%\renewcommand{\thefootnote}{\arabic{footnote}}
+\chapter{TINJAUAN PUSTAKA}
+\label{BAB2:tinjauan}
+
+\section{\textit{Chatbot}}
+Penggunaan \textit{Chatbot} berkembang cukup pesat diberbagai bidang apapun dalam berapa tahun terakhir seperti pemasaran, sistem pendukung, pendidikan, perawatan kesehatan dan hiburan, Sementara \textit{Chatbot} salah satu penerapan
+sistem AI(\textit{Artifical Intelligence}) contoh paling dasar dari interaksi manusia-komputer(\textit{Human-Computer Interaction}). Secara definisi, (\textit{Chatbot}) adalah program komputer yang dirancang untuk mensimulasikan diskusi dengan pengguna manusia, terutama melalui internet. Dalam literatur, teknologi ini juga dikenal dengan sebutan seperti (\textit{smart bots}), agen interaktif, asisten digital, atau entitas percakapan buatan (\textit{artifical conversation entities}).
+Tujuan utama dari sistem ini tidak hanya semata untuk meniru percakapan manusia sehari-hari, tetapi juga bisa beguna untuk membantu kegiatan manusia dibidang lain.
+
+\subsection{Klasifikasi dan perkembangan \textit{Chatbot}}
+Seiring dengan perkembangan, \textit{chatbot} dapat diklasifikasikan berdasarkan metode pemprosesan input dan cara memberikan hasil respon. terdapat tiga model yang digunakan yaitu:
+
+\begin{enumerate}
+  \item \textbf{Rule-based model} \\
+    Ini merupakan arsitektur yang digunakan oleh sebagaian besar \textit{chatbot} pada generasi awal. Pada sistem ini memilih respon berdasarkan kumpulan aturan yang ditetapkan dan mengenali bentuk kosakata dari teks input tanpa membuat jawaban baru.
+    Pengetahuan pada \textit{chatbot} ini buat secara manual \textit{hand-coded}, sehingga model ini memiliki kelemahan seperti kesalahan ejaan atau tata bahasa dalam input pengguna.
+  
+  \item \textbf{Retrieval-based model} \\
+    Pada model ini memberikan fleksibilitas lebih karena dapat melakukan kueri dan menganalisis sumber dengan menggunakan \textit{API}. \textit{Chatbot} berbasis retrieval mengambil respons dari indeks yang ada sehingga pencocokan untuk memilih respon terbaik.
+  
+  \item \textbf{Generative model} \\
+    Model ini memberikan jawaban dengan cara lebih baik dari model sebelumnya dengan menggunakan algoritma \textit{machine learning} dan \textit{deep learning}. \textit{Chatbot} jenis ini hampir mendekati manusia (\textit{human-like}) karena mampu memberikan respon
+    baru berdasarkan pesan pengguna saat ini dan sebelumnya.
+
+\end{enumerate}
+
+\subsection{Komponen \textit{Natural Language Processing (NLP)}}
+Agar \textit{chatbot} dapat berinteraksi secara efektif, sistem ini mengandalkan \textit{NLP}. \textit{NLP} adalah bidang kecerdasan buatan yang memanipulasi teks atau ucapan bahasa alami oleh komputer. Inti tugas \textit{NLP} untuk \textit{Natural Language Understanding (NLU)}, yang merupakan teknik mengimplementasikan respon kepada pengguna secara alami.
+\textit{NLU} bertujuan untuk memproses konteks dan kata dari input bahasa alami pengguna yang mungkin tidak terstruktur, kemudian merespon sesuai dengan niat pengguna. Dalam proses ini, terdapat dua konsep penting:
+
+\begin{enumerate}
+  \renewcommand{\labelenumi}{\Roman{enumi}.}
+    \item Intent : Mewakili pemetaan antara apa yang dikatakan pengguna dan tindakan apa yang harus diambil oleh \textit{chatbot}.
+    
+    \item Entity : Merupakan nilai parameter spesifik dari input bahasa alami, seperti tanggal atau nama lokasi, untuk melengkapi pemahaman sistem terhadap permintaan pengguna.
+    
+\end{enumerate}
+
+\subsection{Large Language Models (LLM)}
+Large Language Models (LLM) telah mendapatkan banyak perhatian dalam beberapa tahun terakhir dan diterapkan di berbagai industri \cite{Steininger2025}. LLM didasarkan pada algoritma \textit{deep learning} dan jaringan saraf tiruan (\textit{artificial neural networks}) untuk memahami, menafsirkan, dan menghasilkan jawaban dalam bahasa manusia \cite{Steininger2025}.
+
+Proses pembuatan dan pelatihan LLM membutuhkan jumlah data yang sangat besar \cite{Steininger2025}. Proses ini dimulai dengan fase \textit{unsupervised learning} menggunakan data tidak terstruktur, dilanjutkan dengan \textit{fine-tuning} menggunakan data terstruktur untuk konsep yang lebih spesifik, dan diakhiri dengan \textit{reinforcement learning} \cite{Steininger2025}.
+
+Meskipun canggih, LLM memiliki kelemahan, yaitu sulitnya penyesuaian (\textit{customization}) untuk topik spesifik karena kebutuhan data pelatihan yang besar \cite{Steininger2025}. Selain itu, keterlacakan (\textit{traceability}) jawaban juga menjadi masalah, di mana tidak selalu jelas bagaimana model mendapatkan jawabannya, yang dapat menyebabkan halusinasi atau informasi yang salah \cite{Steininger2025}. Salah satu cara untuk mengatasi masalah ini adalah dengan menggunakan \textit{Retrieval-Augmented Generation} (RAG) \cite{Steininger2025}.
+
+\subsection{Retrieval-Augmented Generation (RAG)}
+Retrieval-Augmented Generation (RAG) pertama kali diperkenalkan oleh Lewis et al. (2020) sebagai modifikasi untuk LLM yang membatasi referensi data pada sekumpulan informasi tertentu, biasanya dari dokumen spesifik \cite{Steininger2025}. Pendekatan ini memungkinkan penggunaan model untuk domain khusus.
+
+RAG dibangun sebagai pendekatan dua langkah yang menggabungkan \textit{retriever} (non-parametrik) dengan model \textit{generator} (memori parametrik) \cite{Steininger2025}.
+\begin{enumerate}
+    \item \textbf{Retriever:} Terdiri dari \textit{query encoder} yang mengubah pertanyaan pengguna menjadi representasi vektor, serta indeks dokumen. Indeks dokumen menggunakan matriks kesamaan (\textit{similarity matrix}) untuk mengidentifikasi dan mengambil dokumen yang paling sesuai untuk menjawab pertanyaan \cite{Steininger2025}.
+    \item \textbf{Generator:} Menggunakan dokumen yang diambil dari indeks beserta pertanyaan pengguna untuk membuat respons akhir \cite{Steininger2025}. Dokumen yang diambil dapat dibatasi jumlahnya menggunakan pendekatan \textit{top-k approximation}, di mana $k$ adalah hiperparameter yang dapat disesuaikan \cite{Steininger2025}.
+\end{enumerate}
+
+\subsection{Evaluasi Chatbot dan RAGAS}
+Mengevaluasi kualitas \textit{pipeline} chatbot sangat penting untuk memastikan keberhasilan dan keakuratannya \cite{Steininger2025}. Metode evaluasi tradisional seperti ROUGE dan BLEU, yang awalnya dikembangkan untuk penerjemahan mesin, mengandalkan \textit{n-grams} untuk membandingkan teks yang dihasilkan dengan referensi \cite{Steininger2025}.
+
+Pendekatan yang lebih modern adalah menggunakan metode \textit{LLM-as-a-judge}, di mana LLM digunakan untuk menilai output chatbot berdasarkan kriteria tertentu \cite{Steininger2025}. Salah satu kerangka kerja yang menerapkan metodologi ini adalah RAGAS, yang menawarkan metrik yang kuat untuk mengevaluasi berbagai aspek kinerja RAG \cite{Steininger2025}. Beberapa metrik utama dalam evaluasi ini meliputi:
+
+\begin{itemize}
+    \item \textbf{Factual Correctness:} Mengevaluasi keakuratan faktual dari respons yang dihasilkan dengan membandingkannya dengan referensi dasar \cite{Steininger2025}.
+    \item \textbf{Context Precision:} Mengukur proporsi potongan (\textit{chunks}) yang relevan di dalam konteks yang diambil (\textit{retrieved context}) \cite{Steininger2025}.
+    \item \textbf{Context Recall:} Menilai kelengkapan pengambilan dokumen dengan mengukur seberapa banyak dokumen relevan yang berhasil diambil \cite{Steininger2025}.
+    \item \textbf{Faithfulness:} Mengevaluasi konsistensi faktual dari jawaban yang dihasilkan terhadap konteks yang diberikan, untuk memastikan jawaban tidak mengandung informasi yang tidak didukung (halusinasi) \cite{Steininger2025}.
+    \item \textbf{Answer Relevancy:} Memeriksa seberapa dekat jawaban yang dihasilkan menjawab pertanyaan awal (\textit{prompt}) pengguna \cite{Steininger2025}.
+\end{itemize}
+
