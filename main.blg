@@ -10,44 +10,44 @@ The style file: Etc/UPERbibliography.bst.bst
 A level-1 auxiliary file: Lampiran-A/Lampiran-A.aux
 A level-1 auxiliary file: Lampiran-B/Lampiran-B.aux
 Database file #1: referensi.bib
-You've used 1 entry,
+You've used 4 entries,
             1935 wiz_defined-function locations,
-            487 strings with 4042 characters,
-and the built_in function-call counts, 498 in all, are:
-= -- 42
-> -- 33
-< -- 1
-+ -- 12
-- -- 12
-* -- 43
-:= -- 93
-add.period$ -- 4
-call.type$ -- 1
-change.case$ -- 11
-chr.to.int$ -- 1
-cite$ -- 1
-duplicate$ -- 18
-empty$ -- 30
-format.name$ -- 13
-if$ -- 93
+            508 strings with 4741 characters,
+and the built_in function-call counts, 1782 in all, are:
+= -- 173
+> -- 87
+< -- 0
++ -- 30
+- -- 30
+* -- 167
+:= -- 318
+add.period$ -- 13
+call.type$ -- 4
+change.case$ -- 35
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 55
+empty$ -- 115
+format.name$ -- 34
+if$ -- 335
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 1
-newline$ -- 9
-num.names$ -- 3
-pop$ -- 14
+missing$ -- 4
+newline$ -- 24
+num.names$ -- 12
+pop$ -- 26
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 35
 quote$ -- 0
-skip$ -- 10
+skip$ -- 42
 stack$ -- 0
-substring$ -- 12
-swap$ -- 2
-text.length$ -- 1
+substring$ -- 135
+swap$ -- 4
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
+type$ -- 24
 warning$ -- 0
-while$ -- 2
+while$ -- 14
 width$ -- 0
-write$ -- 17
+write$ -- 56

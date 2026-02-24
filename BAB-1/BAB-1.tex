@@ -11,37 +11,39 @@
  kebijakan fakultas bersifat dinamis dan terus ada perubahan seiring dengan perkembangan kebijakan pendidikan tinggi. Perubahan tersebut bisa berupa revisi parsial, pembaruan pasal tertentu saja atau penggatian keseluruhan dokumen. 
  Namun, permasalahan sistem pencarian dokumen regulasi yang umum digunakan berbasis kata kunci (keyword-based retrieval), sehingga sering terjadi gagal membedakan versi dokumen masih berlaku dan tidak bisa menelusuri hubungan antarversi regulasi yang saling terkait. Hal ini menimbulkan kesulitan bagi civitas akademik dalam memastikan validitas dan relevansi suatu kebijakan universitas.
 
- Penelitian yang sudah ada menunjukan bahwa RAG memiliki kemampuan adaptif diberbagai ranah. Zhang et al. (2023) mengimplementasikan RAG pada bidang pendidikan (CHAX: A RAG-based Chatbot for Chax Education), sementara Amazou et al. (2025) menerapkannya dalam konteks hukum kontrak untuk meningkatkan akurasi dan kemampuan citation dalam sistem hukum digital.
- 
- Meskipun dari hasil penelitian yang sudah memberikan hasil yang menjanjikan, tetapi penelitian tersebut masih berfokus pada dokumen statis ayng tidak memiliki hubungan versi atau konteks temporal yang bisa berubah. 
- Dalam konteks dokumen regulasi universitas, pendekatan RAG konvesional menghadapi masalah tambahan karena sifat dokumen yang amandatif (dapat berubah sebagian) dan temporal (memiliki periode berlaku). 
+ Penelitian yang sudah ada menunjukan bahwa RAG memiliki kemampuan adaptif di berbagai ranah. Mengimplementasikan RAG pada bidang pendidikan teknik (\textit{ChAx}) untuk membantu mahasiswa memahami dokumen teknis yang kompleks \cite{Steininger2025}. Sementara itu, \cite{Amazou2025} menerapkannya dalam konteks hukum kontrak untuk meningkatkan akurasi sitasi. 
+ Melengkapi temuan tersebut pada domain kritis yang membutuhkan validitas tinggi, membuktikan bahwa integrasi RAG pada sistem kesehatan mampu mengurangi risiko halusinasi model bahasa secara signifikan dan meningkatkan relevansi jawaban berbasis bukti \cite{Samudra2025}. Karakteristik akurasi tinggi ini sangat krusial untuk diadopsi ke dalam sistem pencarian regulasi universitas guna meminimalisir kesalahan interpretasi administratif.
+
+ Meskipun memberikan hasil menjanjikan, penelitian-penelitian tersebut menyoroti tantangan teknis yang belum sepenuhnya terpecahkan, terutama terkait struktur dokumen dan keamanan data. \cite{Steininger2025} menemukan bahwa metode pemecahan dokumen (\textit{chunking}) standar sering kali memutus konteks hirarki (bab dan sub-bab), yang fatal bagi dokumen dengan ketergantungan aturan yang tinggi seperti gambar teknik atau regulasi. 
+ Selain itu, mengingat sifat dokumen internal universitas yang sensitif, aspek keamanan data menjadi perhatian utama. \cite{Anjaneyulu2025} menyarankan implementasi sistem RAG yang beroperasi secara \textit{offline} untuk menjamin privasi dokumen institusi agar tidak terekspos ke layanan \textit{cloud} publik. Namun, kebanyakan masih berfokus pada dokumen statis dan belum menangani hubungan versi atau konteks temporal yang dinamis secara mendalam. 
+ Dalam konteks dokumen regulasi universitas, pendekatan RAG konvensional menghadapi masalah tambahan karena sifat dokumen yang amandatif (dapat berubah sebagian) dan temporal (memiliki periode berlaku). 
  Kompleksitas ini memiliki permasalahan yang perlu diselesaikan dalam pengembangan asisten digital berbasis RAG untuk regulasi universitas, yaitu:
 
 \begin{enumerate}
     \item \textbf{Temporal Inconsistency} \\
     Sistem tidak dapat membedakan konteks waktu dari informasi, sehingga berpotensi memberikan jawaban berdasarkan dokumen yang sudah tidak berlaku.
 
-    \newpage
-
     \item \textbf{Partial Supersession} \\
-    Perubahan regulasi diuniversitas sifat parsial, dimana hanya beberapa pasal atau ayat yang diperbarui. Sistem RAG tanpa mekanisme pelacakan versi cenderung mencampur versi lama dan baru.
+    Perubahan regulasi di universitas sifat parsial, dimana hanya beberapa pasal atau ayat yang diperbarui. Sistem RAG tanpa mekanisme versi cenderung mencampur dokumen lama dan baru.
 
     \item \textbf{Citation Accuracy} \\
-    Ketika sistem tidak memiliki manajemen versi dengan baik, refrensi terhadap sumber regulasi menjadi tidak akurat. Hal ini bisa menimbulkan resiko kesalahan interprentasi terhadap kebijakan yang berlaku.
+    Ketika sistem tidak memiliki manajemen versi dengan baik, referensi terhadap sumber menjadi tidak akurat. Hal ini bisa menimbulkan resiko kesalahan interpretasi terhadap kebijakan yang berlaku.
 
     \item \textbf{Structural Semantics Loss} \\
-    Dokumen regulasi memiliki struktur yang kompleks jika proses \textit{chunking} dan \textit{embedding} tidak mempertimbangkan struktur sistem akan kehilangan konteks semantik antarbagian dan menurukan semantic retrieval.
+    Dokumen regulasi memiliki struktur yang kompleks jika proses \textit{chunking} dan \textit{embedding} tidak mempertimbangkan struktur sistem akan kehilangan konteks dan mempengaruhi dalam pencarian dokumen yang relevan.
 \end{enumerate}
 
 \section{Rumusan Masalah}
     Berdasarkan latar belakang permasalahan yang telah diuraikan, rumusan masalah dalam penelitian ini adalah:
     \begin{enumerate}
-        \item Bagaimana menerapkan metode \textit{chunking} dan \textit{embedding} yang efektif untuk mempertahankan struktur hirarki dokumen regulasi (bab, pasal, ayat) agar konteks semantik tidak hilang saat proses \textit{retrieval}?
+        \item Bagaimana menerapkan metode \textit{chunking} dan \textit{embedding} yang efektif untuk mempertahankan struktur hirarki dokumen regulasi (bab, pasal, ayat) agar konteks tidak hilang saat proses \textit{retrieval}?
 
         \item Bagaimana mekanisme \textit{retrieval} dan \textit{generation} dapat dioptimalkan untuk memastikan akurasi sitasi, sehingga jawaban yang dihasilkan sistem merujuk secara tepat pada dokumen yang relevan?
 
         \item Sejauh mana peningkatan kinerja sistem RAG dengan pendekatan \textit{version-aware} dibandingkan RAG konvensional dalam aspek akurasi jawaban dan relevansi dokumen regulasi universitas?
     \end{enumerate}
+
+\newpage
  
 \section{Batasan Masalah}
     Agar penelitian ini lebih terarah dan fokus pada tujuan yang ingin dicapai, penulis menetapkan beberapa batasan masalah sebagai berikut:
@@ -67,6 +69,8 @@
 
         \item Mengevaluasi performa sistem RAG yang dikembangkan menggunakan metrik relevansi dan akurasi (seperti \textit{Precision}, \textit{Recall}, atau \textit{RAGAS score}) dibandingkan dengan pendekatan pencarian konvensional.
     \end{enumerate}
+
+\newpage
 
 \section{Manfaat Penelitian}
 Penelitian ini diharapkan dapat memberikan manfaat sebagai berikut:

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2026.1.8)  8 JAN 2026 18:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2026.1.8)  12 FEB 2026 20:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1200,7 +1200,7 @@ Package: xparse 2024-08-16 L3 Experimental document command parser
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<Etc/LogoUP_silver.png, id=154, 153.6942pt x 111.7776pt>
+<Etc/LogoUP_silver.png, id=166, 153.6942pt x 111.7776pt>
 File: Etc/LogoUP_silver.png Graphic file (type png)
 <use Etc/LogoUP_silver.png>
 Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 207.
@@ -1244,7 +1244,7 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 207.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<Etc/LogoUP.png, id=163, 153.6942pt x 111.7776pt>
+<Etc/LogoUP.png, id=175, 153.6942pt x 111.7776pt>
 File: Etc/LogoUP.png Graphic file (type png)
 <use Etc/LogoUP.png>
 Package pdftex.def Info: Etc/LogoUP.png  used on input line 207.
@@ -1474,7 +1474,7 @@ l.214 \daftarisi
 pdfTeX warning (ext4): destination with the same identifier (name{page.iv}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 ...}{\numberline {5.2}Saran}{15}{section.5.2}
+l.26 ...line {4.3}Hasil Evaluasi}{16}{section.4.3}
                                                   % [4
 
 ])
@@ -1530,16 +1530,18 @@ Overfull \hbox (10.14507pt too wide) in paragraph at lines 6--9
 
 ]
 
-[2])
+[2]
 
-[3]
+[3])
+
+[4]
 File: Etc/LogoUP_silver.png Graphic file (type png)
 <use Etc/LogoUP_silver.png>
 Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 222.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[4
+[5
 
 
 ]
@@ -1549,30 +1551,30 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 222.
 BAB II.
 
 
-[5
+[6
 
 
 ]
 
-[6]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 61.
+[7]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 63.
  (/usr/share/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Overfull \hbox (8.30104pt too wide) in paragraph at lines 63--64
+Overfull \hbox (8.30104pt too wide) in paragraph at lines 65--66
 []\OT1/ptm/b/n/10.95 Context Re-call: \OT1/ptm/m/n/10.95 Me-ni-lai ke-lengka-pan pengam-bi-lan doku-men den-gan men-gukur se-ber-apa banyak
  []
 
 )
 
-[7]
+[8]
 File: Etc/LogoUP_silver.png Graphic file (type png)
 <use Etc/LogoUP_silver.png>
 Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 224.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[8
+[9
 
 
 ]
@@ -1580,37 +1582,42 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 224.
 
  (./BAB-3/BAB-3.tex
 BAB III.
-<BAB-3/rev-RAG-diagram.png, id=361, 651.43375pt x 718.685pt>
-File: BAB-3/rev-RAG-diagram.png Graphic file (type png)
-<use BAB-3/rev-RAG-diagram.png>
-Package pdftex.def Info: BAB-3/rev-RAG-diagram.png  used on input line 10.
-(pdftex.def)             Requested size: 308.71106pt x 340.58936pt.
+
+Overfull \hbox (21.65918pt too wide) in paragraph at lines 4--5
+\OT1/ptm/m/it/10.95 chat-bot \OT1/ptm/m/n/10.95 den-gan ar-sitek-tur yang meng-in-te-grasikan metode kon-ven-sional den-gan \OT1/ptm/m/it/10.95 version-aware\OT1/ptm/m/n/10.95 . Metodologi
+ []
+
+<BAB-3/rev2-RAG-diagram.png, id=392, 1125.20375pt x 742.775pt>
+File: BAB-3/rev2-RAG-diagram.png Graphic file (type png)
+<use BAB-3/rev2-RAG-diagram.png>
+Package pdftex.def Info: BAB-3/rev2-RAG-diagram.png  used on input line 10.
+(pdftex.def)             Requested size: 308.71106pt x 203.78206pt.
 
 
-[9
+[10
 
 
- <./BAB-3/rev-RAG-diagram.png>]
+ <./BAB-3/rev2-RAG-diagram.png (PNG copy)>]
 Overfull \hbox (25.84216pt too wide) in paragraph at lines 36--38
 \OT1/ptm/m/n/10.95 Teks yang telah terbagi dikon-versi men-jadi vek-tor nu-merik meng-gu-na-kan model \OT1/ptm/m/it/10.95 intfloat/multilingual-
  []
 
 
 
-[10]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 53.
+[11]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 54.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 ))
 
-[11]
+[12]
 File: Etc/LogoUP_silver.png Graphic file (type png)
 <use Etc/LogoUP_silver.png>
 Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 226.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[12
+[13
 
 
 ]
@@ -1618,19 +1625,88 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 226.
 
  (./BAB-4/BAB-4.tex
 BAB IV.
-)
 
-[13
+Overfull \hbox (8.31673pt too wide) in paragraph at lines 13--14
+[]\OT1/ptm/m/n/10.95 Setiap doku-men me-la-lui proses \OT1/ptm/m/it/10.95 pre-pro-cess-ing \OT1/ptm/m/n/10.95 dan dibagi men-jadi potongan-potongan teks (\OT1/ptm/m/it/10.95 chunks\OT1/ptm/m/n/10.95 ).
+ []
+
+
+
+[14
 
 
 ]
+Underfull \hbox (badness 1924) in paragraph at lines 58--58
+[]|\OT1/ptm/b/n/10.95 Default Query (Doku-men
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\OT1/ptm/m/n/10.95 Mengajukan per-tanyaan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+[]|\OT1/ptm/m/n/10.95 Sistem otoma-tis mengam-bil
+ []
+
+
+Underfull \hbox (badness 7944) in paragraph at lines 58--58
+\OT1/ptm/m/n/10.95 kon-teks dari doku-men versi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+[]|\OT1/ptm/b/n/10.95 Query Doku-men Lama
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+\OT1/ptm/m/n/10.95 Mengajukan per-tanyaan
+ []
+
+
+Underfull \hbox (badness 2591) in paragraph at lines 59--59
+\OT1/ptm/m/n/10.95 spe-si-fik ten-tang data lama
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+[]|\OT1/ptm/m/n/10.95 Sistem men-jawab "In-for-masi
+ []
+
+
+Underfull \hbox (badness 6995) in paragraph at lines 59--59
+\OT1/ptm/m/n/10.95 tidak dite-mukan" atau men-
+ []
+
+
+Underfull \hbox (badness 7685) in paragraph at lines 60--60
+\OT1/ptm/m/n/10.95 Mengubah fil-ter ke versi
+ []
+
+
+Underfull \hbox (badness 3679) in paragraph at lines 61--61
+\OT1/ptm/m/n/10.95 Memastikan jawa-ban yang
+ []
+
+
+
+[15]
+Overfull \hbox (7.68129pt too wide) in paragraph at lines 76--77
+[]\OT1/ptm/m/n/10.95 Nilai \OT1/ptm/b/n/10.95 Faith-ful-ness \OT1/ptm/m/n/10.95 sebe-sar me-nun-jukkan bahwa halusi-nasi model, se-hingga jawa-ban yang diberikan
+ []
+
+)
+
+[16]
 File: Etc/LogoUP_silver.png Graphic file (type png)
 <use Etc/LogoUP_silver.png>
 Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 228.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[14
+[17
 
 
 ]
@@ -1640,7 +1716,7 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 228.
 BAB V.
 )
 
-[15
+[18
 
 
 ]
@@ -1650,12 +1726,12 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 230.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[16
+[19
 
 
 ] (./main.bbl)
 
-[17
+[20
 
 ]
 File: Etc/LogoUP_silver.png Graphic file (type png)
@@ -1664,7 +1740,7 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 242.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[18]
+[21]
 \openout2 = `Lampiran-A/Lampiran-A.aux'.
 
  (./Lampiran-A/Lampiran-A.tex
@@ -1672,10 +1748,10 @@ LAMPIRAN A.
 \pydata@fh@_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted=\write9
 \openout9 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260108180325 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20260212203437 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
 (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260108180325 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20260212203437 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./_minted/default.style.minted) (./_minted/F8675A43A9EC4EAC2F320A220329D1BB.highlight.minted
 LaTeX Font Info:    Trying to load font information for OT1+phv on input line 2.
@@ -1762,25 +1838,25 @@ LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 37.
 )
 
-[19
+[22
 
 
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<BAB-2/resnet receiver.png, id=437, 395.4775pt x 255.95625pt>
+<BAB-2/resnet receiver.png, id=481, 395.4775pt x 255.95625pt>
 File: BAB-2/resnet receiver.png Graphic file (type png)
 <use BAB-2/resnet receiver.png>
 Package pdftex.def Info: BAB-2/resnet receiver.png  used on input line 53.
 (pdftex.def)             Requested size: 197.73827pt x 127.9778pt.
 )
 
-[20 <./BAB-2/resnet receiver.png>]
+[23 <./BAB-2/resnet receiver.png>]
 \openout2 = `Lampiran-B/Lampiran-B.aux'.
 
  (./Lampiran-B/Lampiran-B.tex
 LAMPIRAN B.
 )
 
-[21
+[24
 
 
 
@@ -1791,21 +1867,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: C8F21B38F5243AF83C238A54008367D4;4516.
+(rerunfilecheck)             Checksum: 0002EB308D10202FC9DC84E0BC457820;5011.
  ) 
 Here is how much of TeX's memory you used:
- 37335 strings out of 475171
- 769032 string characters out of 5767096
- 1372255 words of memory out of 5000000
- 59487 multiletter control sequences out of 15000+600000
+ 37379 strings out of 475171
+ 769821 string characters out of 5767096
+ 1372851 words of memory out of 5000000
+ 59517 multiletter control sequences out of 15000+600000
  588908 words of font info for 99 fonts, out of 8000000 for 9000
  32 hyphenation exceptions out of 8191
- 103i,13n,106p,649b,1068s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,13n,106p,633b,1068s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (34 pages, 281402 bytes).
+Output written on main.pdf (37 pages, 287179 bytes).
 PDF statistics:
- 515 PDF objects out of 1000 (max. 8388607)
- 430 compressed objects within 5 object streams
- 109 named destinations out of 1000 (max. 500000)
- 389 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 564 PDF objects out of 1000 (max. 8388607)
+ 477 compressed objects within 5 object streams
+ 123 named destinations out of 1000 (max. 500000)
+ 413 words of extra memory for PDF output out of 10000 (max. 10000000)
 

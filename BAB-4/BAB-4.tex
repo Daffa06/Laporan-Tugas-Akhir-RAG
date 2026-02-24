@@ -1,4 +1,108 @@
 \chapter{HASIL DAN PEMBAHASAN}
 \label{BAB4:hasil}
 
-\lipsum[4-5] % generate dummy sentences
+Pada tahap ini merupakan proses pengumpulan data yang dipakai untuk uji coba, ada sebanyak 6 dokumen
+yang digunakan sebagai data untuk \textit{chunk} dengan total 1.324 \textit{chunk} dan dokumen yang sudah
+\text{chunk} disimpan ke dalaman \textit{ChromaDB} sebagai database. 
+
+\section{Pengumpulan dan Pengolahan Data}
+\label{sec:pengolahan_data}
+
+Tahap awal dalam penelitian ini adalah persiapan data yang menjadi dasar pengetahuan (\textit{knowledge base}) bagi \textit{chatbot}. Total sebanyak 10 dokumen berformat PDF digunakan sebagai data uji. Dokumen-dokumen ini dipilih untuk merepresentasikan [Jelaskan jenis dokumenmu, misal: regulasi yang memiliki versi lama dan baru].
+
+Setiap dokumen melalui proses \textit{preprocessing} dan dibagi menjadi potongan-potongan teks (\textit{chunks}). Proses ini penting agar model dapat memproses informasi dalam batasan \textit{context window} yang tersedia. Rincian statistik data dokumen yang disimpan ke dalam \textit{Vector Database} (ChromaDB) dapat dilihat pada Tabel \ref{tab:dataset_dokumen}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Dataset Dokumen dan Statistik Chunks}
+    \label{tab:dataset_dokumen}
+    \begin{tabular}{|c|l|c|c|}
+        \hline
+        \textbf{No} & \textbf{Nama Dokumen} & \textbf{Halaman} & \textbf{Jumlah Chunks} \\ \hline
+        1 & 0166 Kalender Akademik TA 2022-2023 & 8 & 47 \\ \hline
+        2 & SK - Kalender Akademik TA 2024-2025 & 9 & 53 \\ \hline
+        3 & 234 - 2025 SK - Kalender Akademik 2025-2026 & 10 & 44 \\ \hline
+        4 & 007 - Buku Pedoman Implementasi MBKM & 137 & 918 \\ \hline
+        5 & PER - 0013 - 2021 - Peraturan Implemen & 41 & 219 \\ \hline
+        6 & Salinan-Kepmen-Nomor-74-P-2021-tentang & 6 & 43 \\ \hline
+        \multicolumn{3}{|c|}{\textbf{Total Chunks}} & \textbf{1.324} \\ \hline
+    \end{tabular}
+\end{table}
+
+Dokumen-dokumen yang ada pada tabel ini dipilih karena sesuai dengan kemampuan \textit{chatbot} yang bisa memproses file berformat pdf murni
+bukan dari gambar atau foto yang menjadi pdf serta relevansi dokumen yang yang terkait topik yang dibahas merupakan peraturan akademik serta standar
+operasional digunakan di Universitas Pertamina. Dokumen-dokumen yang dipilih mencakup peraturan akademik, proses prosedur standar, dan pedoman lain
+yang penting bagi sivitas akademika untuk menjalankan tugas. Pemilihan dokumen berdasarkan untuk keperluan informasi yang terkait institusi tersebut, sehingga
+informasi yang diberikan oleh \textit{chatbot} juga terkait institusi tersebut.
+
+\newpage
+\section{Skenario Pengujian}
+\label{sec:skenario_uji}
+
+Pengujian dilakukan untuk memvalidasi kemampuan sistem dalam dua aspek utama:
+\begin{enumerate}
+    \item \textbf{Akurasi Retrieval:} Kemampuan sistem mengambil konteks dari versi dokumen yang tepat sesuai permintaan pengguna.
+    \item \textbf{Kualitas Jawaban:} Keakuratan jawaban yang dihasilkan oleh LLM (Llama3:8b) berdasarkan konteks yang diambil.
+\end{enumerate}
+
+Mekanisme pengujian dilakukan dengan mengajukan pertanyaan ke \textit{chatbot}, yang kemudian diproses melalui tahapan \textit{embedding}, \textit{retrieving}, dan \textit{generating}. Tabel \ref{tab:skenario_pengujian} berikut menjabarkan rencana pengujian fungsional sistem, khususnya terkait fitur \textit{Version Aware}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Tabel Skenario Pengujian Sistem}
+    \label{tab:skenario_pengujian}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|p{1.5cm}|p{4.5cm}|p{5cm}|c|}
+        \hline
+        \textbf{Kode Uji} & \textbf{Skenario} & \textbf{Ekspektasi Hasil} & \textbf{Status} \\ \hline
+        TC-01 & \textbf{Default Query (Dokumen Baru)} \newline Mengajukan pertanyaan terkait regulasi terbaru tanpa memilih versi khusus. & Sistem otomatis mengambil konteks dari dokumen versi terbaru (tahun berjalan). & Berhasil \\ \hline
+        TC-02 & \textbf{Query Dokumen Lama (Tanpa Filter)} \newline Mengajukan pertanyaan spesifik tentang data lama (misal: Kalender 2022) tanpa mengubah setting versi. & Sistem menjawab "Informasi tidak ditemukan" atau menyarankan cek versi lain (Sistem tidak mencampuradukkan data). & Berhasil \\ \hline
+        TC-03 & \textbf{Version Switching} \newline Mengubah filter ke versi "v1" (Dokumen Lama) dan mengajukan pertanyaan yang sama. & Sistem berhasil mengambil konteks dari dokumen lama yang sebelumnya tidak terdeteksi. & Berhasil \\ \hline
+        TC-04 & \textbf{Relevansi Jawaban} \newline Memastikan jawaban yang digenerate LLM sesuai dengan teks dokumen. & Jawaban tidak berhalusinasi dan menyertakan referensi dokumen yang benar. & Berhasil \\ \hline
+    \end{tabular}
+\end{table}
+
+Sesuai Tabel \ref{tab:skenario_pengujian}, apabila pertanyaan yang diajukan berhubungan dengan dokumen lama namun pengguna sedang berada di \textit{version} dokumen baru, sistem dirancang untuk tidak memberikan jawaban yang ada pada dokumen lama, memberikan informasi ketiadaan konteks tidak ada pada dokumen. 
+Pengguna diharuskan memilih versi dokumen yang relevan (misalnya "v1") agar \textit{chatbot} dapat merespon pertanyaan terkait isi dokumen tersebut.
+
+\newpage
+\section{Hasil Evaluasi}
+\label{sec:hasil_evaluasi}
+
+Berdasarkan tabel \ref{tab:hasil_evaluasi}, terlihat sistem menunjukkan performa yang cukup baik pada metrik \textbf{Context Precision} dengan skor 0.194. Skor ini menunjukkan bahwa fitur \textit{version aware} yang
+diimplementasikan pada sistem menggunakan cara \textit{metadata filtering} di ChromaDB bekerja. Sistem berhasil memisahkan dan memilih potongan dokumen \textit{chunks} yang relevan dari versi dokumen yang diminta
+pengguna dan meminimalisir \textit{noise} dari dokumen lain yang memiliki kesamaan konten.
+
+Nilai \textbf{Faithfulness} sebesar menunjukkan bahwa halusinasi model, sehingga jawaban yang diberikan oleh LLM juga sesuai dengan konteks yang diambil dari data vektor yang ada, bukan dari jawaban yang dibuat oleh LLM itu sendiri.
+
+
+\begin{table}[h!]
+    \centering
+    \caption{Hasil Evaluasi Performa RAG Version-Aware}
+    \label{tab:hasil_evaluasi}
+    \begin{tabular}{|l|c|}
+        \hline
+        \textbf{Metrik Evaluasi} & \textbf{Skor Rata-rata} \\ \hline
+        Context Precision & 0.194 \\ \hline
+        Context Recall & 0.500 \\ \hline
+        Faithfulness & 0.250 \\ \hline
+        Answer Relevancy & 0.602 \\ \hline
+    \end{tabular}
+\end{table}
+
+
+
+% \section{Implementasi Antarmuka Chatbot}
+% \label{sec:implementasi}
+
+% Antarmuka \textit{chatbot} dikembangkan menggunakan [Framework UI kamu, misal: Streamlit] untuk memudahkan interaksi pengguna. Fitur utama yang ditonjolkan adalah opsi pemilihan versi dokumen sebelum memulai percakapan.
+
+% \begin{figure}[h!]
+%     \centering
+%     % \includegraphics[width=0.8\textwidth]{gambar/screenshot_ui.png} 
+%     % Ganti path gambar sesuai file kamu
+%     \caption{Tampilan Antarmuka Chatbot dengan Pemilihan Versi}
+%     \label{fig:ui_chatbot}
+% \end{figure}
+
+% Pada Gambar \ref{fig:ui_chatbot}, terlihat pengguna dapat memilih versi dokumen. Ketika pengguna bertanya mengenai [Contoh topik], sistem secara spesifik memberikan jawaban berdasarkan [Versi X], mengabaikan informasi yang bertentangan dari [Versi Y].

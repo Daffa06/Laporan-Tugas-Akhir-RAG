@@ -3,8 +3,8 @@
 \label{BAB2:tinjauan}
 
 \section{\textit{Chatbot}}
-Penggunaan \textit{Chatbot} berkembang cukup pesat diberbagai bidang apapun dalam berapa tahun terakhir seperti pemasaran, sistem pendukung, pendidikan, perawatan kesehatan dan hiburan, Sementara \textit{Chatbot} salah satu penerapan
-sistem AI(\textit{Artifical Intelligence}) contoh paling dasar dari interaksi manusia-komputer(\textit{Human-Computer Interaction}). Secara definisi, (\textit{Chatbot}) adalah program komputer yang dirancang untuk mensimulasikan diskusi dengan pengguna manusia, terutama melalui internet. Dalam literatur, teknologi ini juga dikenal dengan sebutan seperti (\textit{smart bots}), agen interaktif, asisten digital, atau entitas percakapan buatan (\textit{artifical conversation entities}).
+Penggunaan \textit{Chatbot} berkembang cukup pesat diberbagai bidang apapun dalam beberapa tahun terakhir seperti pemasaran, sistem pendukung, pendidikan, perawatan kesehatan sampai hiburan. Perkembangan ini didukung dengan kemajuan teknologi kecerdasan buatan yang mampu beradaptasi layaknya komunikasi dengan manusia. 
+Secara definisi, (\textit{Chatbot}) adalah program komputer yang dirancang untuk mensimulasikan diskusi dengan pengguna manusia, terutama melalui internet. Dalam literatur, teknologi ini juga dikenal dengan sebutan seperti (\textit{smart bots}), agen interaktif, asisten digital, atau entitas percakapan buatan (\textit{artifical conversation entities}).
 Tujuan utama dari sistem ini tidak hanya semata untuk meniru percakapan manusia sehari-hari, tetapi juga bisa beguna untuk membantu kegiatan manusia dibidang lain.
 
 \subsection{Klasifikasi dan perkembangan \textit{Chatbot}}
@@ -12,11 +12,12 @@ Seiring dengan perkembangan, \textit{chatbot} dapat diklasifikasikan berdasarkan
 
 \begin{enumerate}
   \item \textbf{Rule-based model} \\
-    Ini merupakan arsitektur yang digunakan oleh sebagaian besar \textit{chatbot} pada generasi awal. Pada sistem ini memilih respon berdasarkan kumpulan aturan yang ditetapkan dan mengenali bentuk kosakata dari teks input tanpa membuat jawaban baru.
+    Merupakan arsitektur yang digunakan oleh sebagaian besar \textit{chatbot} pada generasi awal. Pada sistem ini memiliki respon berdasarkan kumpulan aturan yang ditetapkan dan mengenali bentuk kosakata dari teks input tanpa membuat jawaban baru.
     Pengetahuan pada \textit{chatbot} ini buat secara manual \textit{hand-coded}, sehingga model ini memiliki kelemahan seperti kesalahan ejaan atau tata bahasa dalam input pengguna.
   
   \item \textbf{Retrieval-based model} \\
-    Pada model ini memberikan fleksibilitas lebih karena dapat melakukan kueri dan menganalisis sumber dengan menggunakan \textit{API}. \textit{Chatbot} berbasis retrieval mengambil respons dari indeks yang ada sehingga pencocokan untuk memilih respon terbaik.
+    Pada model ini memberikan fleksibilitas karena dapat melakukan \textit{query} dan menganalisis sumber data yang didapat melalui \textit{API}. \textit{Chatbot} berbasis retrieval memberikan respons berdasarkan indeks yang sudah ada,
+    sehingga proses pencocokan respon yang diberikan sesuai.
   
   \item \textbf{Generative model} \\
     Model ini memberikan jawaban dengan cara lebih baik dari model sebelumnya dengan menggunakan algoritma \textit{machine learning} dan \textit{deep learning}. \textit{Chatbot} jenis ini hampir mendekati manusia (\textit{human-like}) karena mampu memberikan respon
@@ -37,11 +38,12 @@ Agar \textit{chatbot} dapat berinteraksi secara efektif, sistem ini mengandalkan
 \end{enumerate}
 
 \subsection{Large Language Models (LLM)}
-Large Language Models (LLM) telah mendapatkan banyak perhatian dalam beberapa tahun terakhir dan diterapkan di berbagai industri \cite{Steininger2025}. LLM didasarkan pada algoritma \textit{deep learning} dan jaringan saraf tiruan (\textit{artificial neural networks}) untuk memahami, menafsirkan, dan menghasilkan jawaban dalam bahasa manusia \cite{Steininger2025}.
+Large Language Models (LLM) telah mendapatkan banyak perhatian dalam beberapa tahun terakhir dan diterapkan di berbagai industri. LLM didasarkan pada algoritma \textit{deep learning} dan jaringan saraf tiruan (\textit{artificial neural networks}) untuk memahami, menafsirkan, dan menghasilkan jawaban dalam bahasa manusia \cite{Steininger2025}.
 
-Proses pembuatan dan pelatihan LLM membutuhkan jumlah data yang sangat besar \cite{Steininger2025}. Proses ini dimulai dengan fase \textit{unsupervised learning} menggunakan data tidak terstruktur, dilanjutkan dengan \textit{fine-tuning} menggunakan data terstruktur untuk konsep yang lebih spesifik, dan diakhiri dengan \textit{reinforcement learning} \cite{Steininger2025}.
+Proses pembuatan dan pelatihan LLM membutuhkan jumlah data yang sangat besar. Proses ini dimulai dengan fase \textit{unsupervised learning} menggunakan data tidak terstruktur, dilanjutkan dengan \textit{fine-tuning} menggunakan data terstruktur untuk konsep yang lebih spesifik, dan diakhiri dengan \textit{reinforcement learning} \cite{Steininger2025}.
 
-Meskipun canggih, LLM memiliki kelemahan, yaitu sulitnya penyesuaian (\textit{customization}) untuk topik spesifik karena kebutuhan data pelatihan yang besar \cite{Steininger2025}. Selain itu, keterlacakan (\textit{traceability}) jawaban juga menjadi masalah, di mana tidak selalu jelas bagaimana model mendapatkan jawabannya, yang dapat menyebabkan halusinasi atau informasi yang salah \cite{Steininger2025}. Salah satu cara untuk mengatasi masalah ini adalah dengan menggunakan \textit{Retrieval-Augmented Generation} (RAG) \cite{Steininger2025}.
+Meskipun canggih, LLM memiliki kelemahan, yaitu sulitnya penyesuaian (\textit{customization}) untuk topik spesifik karena kebutuhan data pelatihan yang besar \cite{Steininger2025}. Selain itu, keterlacakan (\textit{traceability}) jawaban yang diberikan model menjadi permasalahan, karena tidak selalu jelas bagaimana model memperoleh jawabannya. 
+kondisi dapat menyebabkan halusinasi atau informasi yang salah. Salah satu cara untuk mengatasi masalah ini adalah penerapan \textit{Retrieval-Augmented Generation} (RAG) \cite{Steininger2025}.
 
 \subsection{Retrieval-Augmented Generation (RAG)}
 Retrieval-Augmented Generation (RAG) pertama kali diperkenalkan oleh Lewis et al. (2020) sebagai modifikasi untuk LLM yang membatasi referensi data pada sekumpulan informasi tertentu, biasanya dari dokumen spesifik \cite{Steininger2025}. Pendekatan ini memungkinkan penggunaan model untuk domain khusus.

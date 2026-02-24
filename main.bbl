@@ -1,9 +1,24 @@
 \begin{thebibliography}{}
 
+\bibitem[Amazou{,} dkk., 2025]{Amazou2025}
+Amazou, Y., Tayalati, F., dan Azmani, M. (2025).
+\newblock Accurate {AI} assistance in contract law using {Retrieval-Augmented} {Generation} to advance legal technology.
+\newblock {\em International Journal of Advanced Computer Science and Applications (IJACSA)}, 16(2).
+
+\bibitem[Anjaneyulu{,} dkk., 2025]{Anjaneyulu2025}
+Anjaneyulu, D., Bhaskar, P., dan Yadav, S.~H. (2025).
+\newblock {RAG} bot for random documents.
+\newblock {\em International Journal of Current Research and Techniques (IJCRT)}, 15(2):50722--50728.
+
+\bibitem[Samudra{,} dkk., 2025]{Samudra2025}
+Samudra, G., Zy, A.~T., dan Ermanto, E. (2025).
+\newblock Implementasi {Retrieval} {Augmented} {Generation} ({RAG}) dalam perancangan chatbot kesehatan pencernaan.
+\newblock {\em JSAI: Journal Scientific and Applied Informatics}, 8(1):181--188.
+
 \bibitem[Steininger{,} dkk., 2025]{Steininger2025}
 Steininger, S., Kezer, S., Rief, J., Spicker, E., Preis, S., dan Fottner, J. (2025).
-\newblock Chax: a rag-based chatbot for cax education.
-\newblock In {\em Proceedings of the Design Society}, volume~5.
+\newblock {ChAx}: A {RAG}-based chatbot for {CAx} education.
+\newblock {\em Proceedings of the Design Society}, 5:921--930.
 \newblock ICED25.
 
 \end{thebibliography}

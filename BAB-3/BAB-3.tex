@@ -1,14 +1,14 @@
 \chapter{METODE PENELITIAN}
 \label{BAB3:Metode}
 
-Untuk menyelesaikan permasalahan yang dirumuskan, penelitian ini mengembangkan sistem \textit{chatbot} dengan arsitektur \textit{Unified RAG} yang mengintegrasikan metode konvensional dengan \textit{version-aware}. Metodologi penelitian dirancang untuk menangani dokumen yang memiliki riwayat perubahan (versi) secara kronologis.
+Untuk menyelesaikan permasalahan yang dirumuskan, penelitian ini mengembangkan sistem \textit{chatbot} dengan arsitektur yang mengintegrasikan metode konvensional dengan \textit{version-aware}. Metodologi penelitian dirancang untuk menangani dokumen yang memiliki riwayat perubahan (versi) secara kronologis.
 
 \section{Desain Arsitektur Sistem}
-Sistem dibangun berdasarkan arsitektur yang memisahkan antara komponen standar RAG dengan komponen logika versi. Gambaran umum arsitektur sistem dapat dilihat pada Gambar \ref{fig:rag_architecture}.
+Sistem dibangun berdasarkan arsitektur yang memisahkan antara komponen standar RAG dengan version aware. Gambaran umum arsitektur sistem dapat dilihat pada Gambar \ref{fig:rag_architecture}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{BAB-3/rev-RAG-diagram.png}
-    \caption{Arsitektur Unified RAG (Conventional vs Version Aware)}
+    \includegraphics[width=0.7\textwidth]{BAB-3/rev2-RAG-diagram.png}
+    \caption{Arsitektur RAG (Conventional vs Version Aware)}
     \label{fig:rag_architecture}
 \end{figure}
 
@@ -21,7 +21,7 @@ Seperti yang ditunjukkan pada Gambar \ref{fig:rag_architecture}, arsitektur ini 
 Komponen berwarna biru merepresentasikan proses RAG standar (\textit{Standard Component}), sedangkan komponen berwarna oranye dengan garis putus-putus merepresentasikan logika tambahan (\textit{Add-on Logic}) untuk menangani kapabilitas \textit{version-aware}.
 
 \section{\textit{Data Ingestion Pipeline}}
-Tahap ini digambarkan pada bagian atas Gambar \ref{fig:rag_architecture}. Proses ini bertujuan mengubah dokumen tidak terstruktur menjadi format yang dapat dipahami oleh mesin dengan menyertakan konteks versi.
+Tahap ini dapat dilihat pada gambar \ref{fig:rag_architecture}. Proses ini bertujuan mengubah dokumen tidak terstruktur menjadi format yang dapat dipahami oleh mesin dengan menyertakan konteks versi.
 
 \begin{enumerate}
     \item \textbf{\textit{Version Logic (Controller)}} \\
@@ -40,8 +40,9 @@ Tahap ini digambarkan pada bagian atas Gambar \ref{fig:rag_architecture}. Proses
     Vektor dan metadata disimpan ke dalam \textit{ChromaDB}. Basis data ini bertindak sebagai jembatan penyimpanan antara proses \textit{ingestion} dan \textit{retrieval}.
 \end{enumerate}
 
+\newpage
 \section{\textit{Retrieval Pipeline}}
-Tahap ini digambarkan pada bagian bawah Gambar \ref{fig:rag_architecture}, yang menjelaskan bagaimana sistem merespons masukan pengguna.
+Tahap ini ditunjukkan pada gambar \ref{fig:rag_architecture}, yang menjelaskan bagaimana sistem merespons masukan pengguna.
 
 \begin{enumerate}
     \item \textbf{\textit{Query Embedding}} \\
@@ -62,7 +63,7 @@ Tahap ini digambarkan pada bagian bawah Gambar \ref{fig:rag_architecture}, yang 
 \end{enumerate}
 
 \section{Evaluasi Model}
-Untuk mengukur efektivitas arsitektur \textit{Version-Aware} ini dibandingkan dengan RAG Konvensional, dilakukan evaluasi menggunakan metrik RAGAS (\textit{Retrieval Augmented Generation Assessment}).
+Untuk mengukur efektivitas arsitektur \textit{Version-Aware} ini dibandingkan dengan RAG Konvensional, maka dilakukan evaluasi menggunakan metrik RAGAS (\textit{Retrieval Augmented Generation Assessment}).
 
 \begin{enumerate}
     \item \textbf{\textit{Context Precision}}: Mengukur apakah sistem berhasil mengambil versi dokumen yang tepat (misal: tidak mengambil dokumen v1 saat diminta v2).
