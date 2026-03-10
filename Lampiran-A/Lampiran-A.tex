@@ -1,56 +1,204 @@
-\Appendix{Judul Lampiran 1}
-\label{lampiran1}
+\Appendix{Kode Sumber Sistem Retrieval-Augmented Generation (RAG)}
+\label{lampiran:kode_rag}
 
-\section{Coding}
+Pada lampiran ini, dilampirkan kode sumber dari sistem \textit{Retrieval-Augmented Generation} (RAG) \textit{version-aware} yang telah dikembangkan. Kode sumber dibagi menjadi beberapa modul utama berdasarkan fungsinya, yaitu pemrosesan dokumen, layanan \textit{backend} API, antarmuka pengguna berbasis teks, serta skrip evaluasi sistem.
 
-\lipsum[1] % generate dummy sentences
+\section{Pemrosesan Dokumen dan Basis Data Vektor}
 
-\begin{myblock}{Cara \textit{Web Scraping}}\label{Lampiran1}
-\begin{minted}[xleftmargin=20pt,linenos]{python}
+Bagian ini memuat skrip yang bertanggung jawab untuk mempersiapkan pangkalan pengetahuan (\textit{knowledge base}). Skrip \texttt{ingest.py} berfungsi untuk mengekstraksi teks dari berbagai format dokumen (PDF, gambar, maupun teks biasa), membaginya menjadi potongan-potongan informasi (\textit{chunks}) dengan tetap mempertahankan konteks lintas halaman, lalu mengubahnya menjadi representasi vektor (\textit{embeddings}) menggunakan model \texttt{intfloat/multilingual-e5-base} sebelum disimpan ke dalam ChromaDB.
 
-from bs4 import BeautifulSoup
-import requests
-from time import sleep
-base_url = "https://www.oreilly.com/search/" + \
-           "/?q=data&type=*&rows=10&page="
+\begin{myblock}{Skrip \textit{Ingestion} Dokumen (\texttt{ingest.py})}\label{kode:ingest}
+\begin{minted}[xleftmargin=20pt,linenos,breaklines]{python}
 
-
-books = []
-NUM_PAGES = 31
-
-for page_num in range(1, NUM_PAGES + 1):
-    print("souping page", page_num, ",", len(books), " found")
-    url = base_url + str(page_num)
-    soup = BeautifulSoup(requests.get(url).text, 'html5lib')
+def ingest_file(path, version, collection, model, manual_name=None):
+    WINDOW_SIZE = 15   
+    STRIDE = 5        
     
-    for td in soup('td', 'thumbtext'): if not is_video(td):
-        books.append(book_info(td))
+    i = 0
+    while i < len(global_lines):
+        window_items = global_lines[i : i + WINDOW_SIZE]
+        chunk_text = "\n".join([item['text'] for item in window_items]).strip()
+        start_page = window_items[0]['page']
+        end_page = window_items[-1]['page']
+        page_str = str(start_page) if start_page == end_page else f"{start_page}-{end_page}"
         
-    # give a break
-    sleep(30)
+        if len(chunk_text) > 30:
+            meta = {
+                "doc_id": doc_uuid,
+                "name": name,             
+                "version": version,
+                "timestamp": ts,
+                "page": page_str,
+                "content": chunk_text
+            }
+            all_chunk_docs.append(chunk_text)
+            all_chunk_metas.append(meta)
+            all_chunk_ids.append(
+                f"{doc_uuid}_{total_chunks}")
+            total_chunks += 1
+        i += STRIDE
 
-def get_year(book):
-    return int(book["date"].split()[1])
+    embeddings = model.encode(all_chunk_docs, normalize_embeddings=True)
+    collection.add(
+        documents=all_chunk_docs,
+        embeddings=embeddings.tolist(),
+        metadatas=all_chunk_metas,
+        ids=all_chunk_ids
+    )
+\end{minted}
+\end{myblock}
 
-year_counts = Counter(get_year(book) for book in books 
-                       if get_year(book) <= 2014)
+Selanjutnya, skrip \texttt{inspect\_db.py} digunakan sebagai alat bantu pemantauan untuk memverifikasi isi dari ChromaDB. Skrip ini membaca metadata dari pangkalan data dan menampilkan informasi ringkas mengenai daftar dokumen, versi dokumen, jumlah \textit{chunk}, dan stempel waktu (\textit{timestamp}).
 
-import matplotlib.pyplot as plt
-years = sorted(year_counts)
-book_counts = [year_counts[year] for year in years] 
-plt.plot(years, book_counts)
-plt.ylabel("# of data books")
-plt.title("Data is Big!")
-plt.show()
+\begin{myblock}{Skrip Inspeksi Basis Data (\texttt{inspect\_db.py})}\label{kode:inspect}
+\begin{minted}[xleftmargin=20pt,linenos,breaklines]{python}
+
+def main():
+    client = chromadb.PersistentClient(path="./chroma_db")
+    collection = client.get_collection("docs_versioned")
+    all_data = collection.get(include=["metadatas"])
+    
+    # Struktur data untuk mengelompokkan chunk berdasarkan nama file
+    files_summary = defaultdict(lambda: {
+        'version': 'Unknown', 'timestamp': 'N/A', 
+        'doc_id': 'N/A', 'chunks': 0, 'pages': set()
+    })
+
+    for meta in all_data['metadatas']:
+        fname = meta.get('filename') or meta.get('source') or "Tanpa Nama"
+        clean_fname = fname.split('/')[-1].split('\\')[-1]
+
+        files_summary[clean_fname]['chunks'] += 1
+        
+        # Ambil metadata umum pada temuan potongan teks (chunk) pertama
+        if files_summary[clean_fname]['chunks'] == 1:
+            files_summary[clean_fname]['version'] = meta.get('version', 'N/A')
+            files_summary[clean_fname]['timestamp'] = meta.get('timestamp', 'N/A')
+        
+        # Hitung set halaman unik untuk memastikan kelengkapan parsing dokumen
+        if 'page' in meta and meta['page'] is not None:
+            files_summary
+            [clean_fname]['pages'].add(meta['page'])
 
 \end{minted}
 \end{myblock}
 
-\section{Coba Masukkan Gambar}
-Gambar \ref{fig:resnet} sama dengan di Bab 2.
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.5]{BAB-2/resnet receiver.png}
-    \caption{Arsitektur Blok ResNet}
-    \label{fig:resnet}
-\end{figure}
+\section{Layanan \textit{Backend} API RAG}
+
+Skrip \texttt{app.py} merupakan inti dari sistem RAG yang dibangun menggunakan \textit{framework} FastAPI. Modul ini bertugas menerima permintaan kueri dari pengguna, melakukan pencarian semantik (\textit{similarity search}) pada ChromaDB dengan mempertimbangkan spesifikasi versi dokumen (\textit{version-aware}), merakit \textit{prompt} yang komprehensif, dan mengirimkannya ke model bahasa (LLM) Ollama untuk menghasilkan respons akhir berbahasa Indonesia.
+
+\begin{myblock}{Skrip \textit{Backend} API (\texttt{app.py})}\label{kode:app}
+\begin{minted}[xleftmargin=20pt,linenos,breaklines]{python}
+
+@app.post("/query", response_model=QueryResponse)
+async def handle_query(request: QueryRequest):
+    if request.version == "latest":
+        # Ambil sampel lebih besar untuk memfilter dokumen terbaru
+        results = collection.query(
+            query_embeddings=[q_emb_list], n_results=TOP_K_SEARCH,
+            include=["metadatas", "distances", "documents"]
+        )
+        
+        # Pengelompokan dokumen berdasarkan nama
+        doc_groups = {}
+        for (doc, meta, dist) in zip(results['documents'][0], results['metadatas'][0], results['distances'][0]):
+            group_key = meta.get("name")
+            if group_key not in doc_groups: doc_groups[group_key] = []
+            doc_groups[group_key].append({"chunk": doc, "meta": meta, "dist": dist})
+
+        final_candidates = []
+        for name, items in doc_groups.items():
+            # Filter: Hanya ambil potongan dokumen dengan timestamp terbaru
+            latest_ts = max(item['meta'].get('timestamp', 0) for item in items)
+            latest_chunks = [item for item in items if item['meta'].get('timestamp', 0) == latest_ts]
+            final_candidates.extend(latest_chunks)
+            
+        final_candidates.sort(key=lambda x: x["dist"]) 
+        top_chunks_with_meta = final_candidates[:request.top_k]
+
+    else:
+        results = collection.query(
+            query_embeddings=[q_emb_list], n_results=request.top_k,
+            where={"version": request.version},
+            include=["metadatas", "distances", "documents"]
+        )
+
+    prompt = build_prompt(request.query, top_chunks_with_meta)
+    answer = call_ollama_chat(prompt)
+    
+    return QueryResponse(answer=answer, provenance=format_provenance(top_chunks_with_meta))
+\end{minted}
+\end{myblock}
+
+\section{Antarmuka Pengguna Berbasis Baris Perintah}
+
+Untuk memfasilitasi interaksi pengguna dengan layanan \textit{backend}, dikembangkan sebuah antarmuka berbasis baris perintah (\textit{Command Line Interface}) pada skrip \texttt{rag\_cli\_versionaware.py}. Antarmuka ini memungkinkan pengguna untuk mengirimkan kueri, mengganti versi dokumen target yang ingin dicari, serta menampilkan jawaban LLM beserta tabel sumber dokumen asal (\textit{provenance}) dan skor kesamaannya.
+
+\begin{myblock}{Skrip Antarmuka CLI (\texttt{rag\_cli\_versionaware.py})}\label{kode:cli}
+\begin{minted}[xleftmargin=20pt,linenos,breaklines]{python}
+
+def ask_rag(query: str, version: str = "latest"):
+    # Mengirimkan kueri beserta parameter versi ke endpoint RAG backend
+    payload = {"query": query, "version": version, "top_k": 5}
+    res = requests.post("http://localhost:8000/query", json=payload, timeout=120)
+    return res.json() if res.status_code == 200 else None
+
+def main():
+    version = "latest" # Konfigurasi versi pencarian bawaan
+    
+    while True:
+        cmd = Prompt.ask("[bold green] Pertanyaan / Perintah[/bold green]").strip()
+        if cmd.lower() in ["exit", "quit"]: break
+
+        if cmd.lower().startswith("pakai "):
+            version = cmd.split("pakai ", 1)[1].strip()
+            console.print(f" Versi diubah menjadi: {version}")
+            continue
+
+        result = ask_rag(cmd, version)
+        if not result: continue
+
+        answer = result.get("answer", "").strip()
+        provenance = result.get("provenance", [])
+
+        # Menampilkan jawaban utama dan tabel sumber rujukan
+        console.print(Panel.fit(answer, title=f" Jawaban ({version})"))
+        if provenance:
+            show_provenance_table(provenance)
+        
+        log_chat(cmd, version, answer, provenance)
+\end{minted}
+\end{myblock}
+
+\section{Evaluasi Kinerja Sistem}
+
+Tahap pengujian kinerja sistem RAG diimplementasikan dalam skrip \texttt{eval\_ragas.py}. Skrip ini menggunakan kerangka kerja RAGAS (\textit{Retrieval Augmented Generation Assessment}) untuk menghitung metrik evaluasi seperti \textit{faithfulness}, \textit{answer relevancy}, \textit{context precision}, dan \textit{context recall}. Hasil evaluasi ini kemudian diekspor ke dalam format \textit{spreadsheet} untuk analisis lebih lanjut pada Bab 4.
+
+\begin{myblock}{Skrip Evaluasi Kinerja Sistem (\texttt{eval\_ragas.py})}\label{kode:eval}
+\begin{minted}[xleftmargin=20pt,linenos,breaklines]{python}
+
+def run_evaluation():
+    judge_llm = ChatOllama(model="llama3:8b", temperature=0, format="json")
+    judge_embeddings = HuggingFaceEmbeddings(
+        model_name="intfloat/multilingual-e5-base") 
+    
+    # Konversi data inferensi menjadi Dataset HuggingFace
+    dataset = Dataset.from_dict(data_dict)
+    results = evaluate(
+        dataset=dataset,
+        metrics=[
+            faithfulness,
+            answer_relevancy,
+            context_precision,
+            context_recall,
+        ],
+        llm=judge_llm,
+        embeddings=judge_embeddings,
+        run_config=RunConfig(max_workers=1, timeout=300)
+    )
+
+    # Simpan laporan evaluasi ke spreadsheet
+    df = results.to_pandas()
+    df.to_excel("laporan_evaluasi_ragas.xlsx", index=False)
+\end{minted}
+\end{myblock}

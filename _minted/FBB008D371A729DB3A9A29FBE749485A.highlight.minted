@@ -1,0 +1,40 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{n+nd}{@app}\PYG{o}{.}\PYG{n}{post}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{/query}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{response\PYGZus{}model}\PYG{o}{=}\PYG{n}{QueryResponse}\PYG{p}{)}
+\PYG{k}{async} \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{handle\PYGZus{}query}\PYG{p}{(}\PYG{n}{request}\PYG{p}{:} \PYG{n}{QueryRequest}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{if} \PYG{n}{request}\PYG{o}{.}\PYG{n}{version} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{latest}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}
+        \PYG{c+c1}{\PYGZsh{} Ambil sampel lebih besar untuk memfilter dokumen terbaru}
+        \PYG{n}{results} \PYG{o}{=} \PYG{n}{collection}\PYG{o}{.}\PYG{n}{query}\PYG{p}{(}
+            \PYG{n}{query\PYGZus{}embeddings}\PYG{o}{=}\PYG{p}{[}\PYG{n}{q\PYGZus{}emb\PYGZus{}list}\PYG{p}{]}\PYG{p}{,} \PYG{n}{n\PYGZus{}results}\PYG{o}{=}\PYG{n}{TOP\PYGZus{}K\PYGZus{}SEARCH}\PYG{p}{,}
+            \PYG{n}{include}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{metadatas}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{distances}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{documents}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}
+        \PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Pengelompokan dokumen berdasarkan nama}
+        \PYG{n}{doc\PYGZus{}groups} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
+        \PYG{k}{for} \PYG{p}{(}\PYG{n}{doc}\PYG{p}{,} \PYG{n}{meta}\PYG{p}{,} \PYG{n}{dist}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{documents}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{metadatas}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{distances}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
+            \PYG{n}{group\PYGZus{}key} \PYG{o}{=} \PYG{n}{meta}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{name}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{group\PYGZus{}key} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n}{doc\PYGZus{}groups}\PYG{p}{:} \PYG{n}{doc\PYGZus{}groups}\PYG{p}{[}\PYG{n}{group\PYGZus{}key}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
+            \PYG{n}{doc\PYGZus{}groups}\PYG{p}{[}\PYG{n}{group\PYGZus{}key}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{chunk}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{doc}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{meta}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{meta}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{dist}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{dist}\PYG{p}{\PYGZcb{}}\PYG{p}{)}
+
+        \PYG{n}{final\PYGZus{}candidates} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
+        \PYG{k}{for} \PYG{n}{name}\PYG{p}{,} \PYG{n}{items} \PYG{o+ow}{in} \PYG{n}{doc\PYGZus{}groups}\PYG{o}{.}\PYG{n}{items}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+            \PYG{c+c1}{\PYGZsh{} Filter: Hanya ambil potongan dokumen dengan timestamp terbaru}
+            \PYG{n}{latest\PYGZus{}ts} \PYG{o}{=} \PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{meta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{timestamp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{items}\PYG{p}{)}
+            \PYG{n}{latest\PYGZus{}chunks} \PYG{o}{=} \PYG{p}{[}\PYG{n}{item} \PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{items} \PYG{k}{if} \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{meta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{timestamp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{==} \PYG{n}{latest\PYGZus{}ts}\PYG{p}{]}
+            \PYG{n}{final\PYGZus{}candidates}\PYG{o}{.}\PYG{n}{extend}\PYG{p}{(}\PYG{n}{latest\PYGZus{}chunks}\PYG{p}{)}
+
+        \PYG{n}{final\PYGZus{}candidates}\PYG{o}{.}\PYG{n}{sort}\PYG{p}{(}\PYG{n}{key}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{dist}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+        \PYG{n}{top\PYGZus{}chunks\PYGZus{}with\PYGZus{}meta} \PYG{o}{=} \PYG{n}{final\PYGZus{}candidates}\PYG{p}{[}\PYG{p}{:}\PYG{n}{request}\PYG{o}{.}\PYG{n}{top\PYGZus{}k}\PYG{p}{]}
+
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n}{results} \PYG{o}{=} \PYG{n}{collection}\PYG{o}{.}\PYG{n}{query}\PYG{p}{(}
+            \PYG{n}{query\PYGZus{}embeddings}\PYG{o}{=}\PYG{p}{[}\PYG{n}{q\PYGZus{}emb\PYGZus{}list}\PYG{p}{]}\PYG{p}{,} \PYG{n}{n\PYGZus{}results}\PYG{o}{=}\PYG{n}{request}\PYG{o}{.}\PYG{n}{top\PYGZus{}k}\PYG{p}{,}
+            \PYG{n}{where}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{version}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{request}\PYG{o}{.}\PYG{n}{version}\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+            \PYG{n}{include}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{metadatas}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{distances}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{documents}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}
+        \PYG{p}{)}
+
+    \PYG{n}{prompt} \PYG{o}{=} \PYG{n}{build\PYGZus{}prompt}\PYG{p}{(}\PYG{n}{request}\PYG{o}{.}\PYG{n}{query}\PYG{p}{,} \PYG{n}{top\PYGZus{}chunks\PYGZus{}with\PYGZus{}meta}\PYG{p}{)}
+    \PYG{n}{answer} \PYG{o}{=} \PYG{n}{call\PYGZus{}ollama\PYGZus{}chat}\PYG{p}{(}\PYG{n}{prompt}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{QueryResponse}\PYG{p}{(}\PYG{n}{answer}\PYG{o}{=}\PYG{n}{answer}\PYG{p}{,} \PYG{n}{provenance}\PYG{o}{=}\PYG{n}{format\PYGZus{}provenance}\PYG{p}{(}\PYG{n}{top\PYGZus{}chunks\PYGZus{}with\PYGZus{}meta}\PYG{p}{)}\PYG{p}{)}
+\end{MintedVerbatim}

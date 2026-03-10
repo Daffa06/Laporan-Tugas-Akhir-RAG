@@ -69,11 +69,11 @@ Pengguna diharuskan memilih versi dokumen yang relevan (misalnya "v1") agar \tex
 \section{Hasil Evaluasi}
 \label{sec:hasil_evaluasi}
 
-Berdasarkan tabel \ref{tab:hasil_evaluasi}, terlihat sistem menunjukkan performa yang cukup baik pada metrik \textbf{Context Precision} dengan skor 0.194. Skor ini menunjukkan bahwa fitur \textit{version aware} yang
+Berdasarkan tabel \ref{tab:hasil_evaluasi}, terlihat sistem menunjukkan performa yang cukup baik pada metrik \textbf{Context Precision} dengan skor 0.600. Skor ini menunjukkan bahwa fitur \textit{version aware} yang
 diimplementasikan pada sistem menggunakan cara \textit{metadata filtering} di ChromaDB bekerja. Sistem berhasil memisahkan dan memilih potongan dokumen \textit{chunks} yang relevan dari versi dokumen yang diminta
 pengguna dan meminimalisir \textit{noise} dari dokumen lain yang memiliki kesamaan konten.
 
-Nilai \textbf{Faithfulness} sebesar menunjukkan bahwa halusinasi model, sehingga jawaban yang diberikan oleh LLM juga sesuai dengan konteks yang diambil dari data vektor yang ada, bukan dari jawaban yang dibuat oleh LLM itu sendiri.
+Nilai \textbf{Faithfulness} sebesar 0.733 menunjukkan bahwa halusinasi model bisa diminimalisir, sehingga jawaban yang diberikan oleh LLM juga sesuai dengan konteks yang diambil dari data vektor yang ada, bukan dari jawaban yang dibuat oleh LLM itu sendiri.
 
 
 \begin{table}[h!]
@@ -83,26 +83,84 @@ Nilai \textbf{Faithfulness} sebesar menunjukkan bahwa halusinasi model, sehingga
     \begin{tabular}{|l|c|}
         \hline
         \textbf{Metrik Evaluasi} & \textbf{Skor Rata-rata} \\ \hline
-        Context Precision & 0.194 \\ \hline
-        Context Recall & 0.500 \\ \hline
-        Faithfulness & 0.250 \\ \hline
-        Answer Relevancy & 0.602 \\ \hline
+        Context Precision & 0.600 \\ \hline
+        Context Recall & 1.000 \\ \hline
+        Faithfulness & 0.733 \\ \hline
+        Answer Relevancy & 0.907 \\ \hline
     \end{tabular}
 \end{table}
 
+\section{Studi Kasus Kemampuan \textit{Version-Aware}}
+\label{sec:studi_kasus}
 
+Bagian ini bertujuan untuk menguji dan membuktikan efektivitas fitur utama sistem, yaitu \textit{metadata filtering} dalam menangani dokumen yang memiliki kemiripan konteks namun berbeda masa berlakunya (\textit{versioning}). 
 
-% \section{Implementasi Antarmuka Chatbot}
-% \label{sec:implementasi}
+Pengujian kualitatif ini menggunakan dokumen "Kalender Akademik" Universitas Pertamina. Secara natur, kalender akademik selalu diperbarui setiap tahun, sehingga rentan menyebabkan kebingungan (\textit{ambiguity}) pada sistem RAG tradisional jika tahunnya tidak difilter. Skenario dilakukan dengan mengajukan satu pertanyaan yang sama persis pada dua kondisi pemilihan versi dokumen yang berbeda.
 
-% Antarmuka \textit{chatbot} dikembangkan menggunakan [Framework UI kamu, misal: Streamlit] untuk memudahkan interaksi pengguna. Fitur utama yang ditonjolkan adalah opsi pemilihan versi dokumen sebelum memulai percakapan.
+Tabel \ref{tab:studi_kasus_kalender} memperlihatkan perbandingan respons \textit{chatbot} saat pengguna menanyakan jadwal Ujian Akhir Semester (UAS).
 
-% \begin{figure}[h!]
-%     \centering
-%     % \includegraphics[width=0.8\textwidth]{gambar/screenshot_ui.png} 
-%     % Ganti path gambar sesuai file kamu
-%     \caption{Tampilan Antarmuka Chatbot dengan Pemilihan Versi}
-%     \label{fig:ui_chatbot}
-% \end{figure}
+\begin{table}[h!]
+    \centering
+    \caption{Perbandingan Respon Chatbot Berdasarkan Pemilihan Versi Dokumen}
+    \label{tab:studi_kasus_kalender}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|p{3.5cm}|c|p{6cm}|c|}
+        \hline
+        \textbf{Pertanyaan} & \textbf{Filter Versi} & \textbf{Respon Chatbot} & \textbf{Status} \\ \hline
+        \multirow{2}{3.5cm}{\textit{"Kapan pelaksanaan Ujian Akhir Semester (UAS) Ganjil dimulai?"}} 
+        & \textbf{TA 2022-2023} 
+        & "Berdasarkan Kalender Akademik TA 2022/2023, pelaksanaan UAS Ganjil dimulai pada tanggal \textbf{16 Januari 2023 - 27 Januari 2023}." 
+        & \textbf{Valid} \\ \cline{2-4}
+        
+         & \textbf{TA 2024-2025} 
+         & "Sesuai SK Kalender Akademik TA 2024/2025, Ujian Akhir Semester (UAS) Ganjil akan dilaksanakan mulai \textbf{13 Januari 2025 - 25 Januari 2025 }." 
+         & \textbf{Valid} \\ \hline
+    \end{tabular}
+\end{table}
 
-% Pada Gambar \ref{fig:ui_chatbot}, terlihat pengguna dapat memilih versi dokumen. Ketika pengguna bertanya mengenai [Contoh topik], sistem secara spesifik memberikan jawaban berdasarkan [Versi X], mengabaikan informasi yang bertentangan dari [Versi Y].
+\subsection{Analisis Isolasi Konteks}
+
+Berdasarkan hasil pengujian pada Tabel \ref{tab:studi_kasus_kalender}, dapat dianalisis beberapa keunggulan dari implementasi \textit{version-aware}:
+
+\begin{enumerate}
+    \item \textbf{Isolasi Konteks yang Sukses:} Saat pengguna memilih filter "TA 2024-2025", sistem secara otomatis mengabaikan seluruh potongan teks (\textit{chunks}) dari dokumen kalender tahun 2022. Meskipun kedua dokumen mengandung kata kunci "UAS" dan "Ganjil", proses \textit{pre-filtering} di ChromaDB memastikan hanya data tahun 2024 yang ditarik ke dalam \textit{prompt}.
+    \item \textbf{Pencegahan Halusinasi Gabungan:} Tanpa fitur ini, sistem RAG standar berpotensi mencampurkan kedua informasi tersebut (misalnya menjawab: "UAS dilaksanakan pada Desember 2022 dan Januari 2025"), yang justru memberikan informasi keliru kepada pengguna.
+    \item \textbf{Pelacakan Sumber (\textit{Source Tracking}):} Pada setiap jawabannya, LLM (Llama3:8b) secara konsisten menyebutkan referensi tahun keluaran dokumen ("Berdasarkan Kalender Akademik TA 2022/2023..."), yang meningkatkan tingkat kepercayaan pengguna terhadap validitas informasi yang diberikan.
+\end{enumerate}
+
+Hasil studi kasus ini mengonfirmasi bahwa penambahan atribut \textit{metadata} versi secara signifikan menyelesaikan masalah tumpang-tindih informasi (\textit{information overlap}) pada dokumen institusi akademik yang bersifat periodik.
+
+\section{Implementasi Sistem}
+\label{sec:implementasi}
+
+Berdasarkan masukan dan ruang lingkup penelitian, implementasi sistem difokuskan pada pengembangan logika \textit{backend} dan \textit{pipeline} pemrosesan data, tanpa mengutamakan antarmuka grafis (UI). Interaksi pengguna berjalan secara tekstual, di mana fokus utama terletak pada bagaimana sistem memproses \textit{query}, menyaring \textit{metadata}, dan menghasilkan jawaban.
+
+\subsection{Komponen Pembangun Sistem}
+
+Sistem \textit{chatbot} \textit{version-aware} ini dibangun menggunakan ekosistem \textit{open-source} yang berjalan secara lokal. Komponen utama yang diimplementasikan meliputi:
+\begin{itemize}
+    \item \textbf{LangChain:} Digunakan sebagai \textit{framework} utama yang menghubungkan \textit{Large Language Model} (LLM), basis data vektor, dan komponen \textit{prompting}.
+    \item \textbf{ChromaDB:} Diimplementasikan sebagai \textit{Vector Database} lokal untuk menyimpan \textit{embeddings} dokumen beserta \textit{metadata} (seperti ID dokumen dan tahun).
+    \item \textbf{Ollama:} Digunakan sebagai mesin inferensi lokal untuk menjalankan model \textbf{Llama3:8b}. Penggunaan Ollama memastikan privasi data tetap terjaga karena seluruh proses \textit{generation} terjadi di dalam perangkat tanpa memerlukan API eksternal.
+\end{itemize}
+
+\newpage
+\subsection{Alur Pemrosesan Retrieval-Augmented Generation (RAG)}
+
+Implementasi pemrosesan pertanyaan pengguna mengikuti alur kerja yang terstruktur untuk memastikan jawaban yang dihasilkan akurat dan sesuai dengan versi yang diminta. Tahapan implementasi tersebut adalah sebagai berikut:
+
+\begin{enumerate}
+    \item \textbf{Penerimaan Input (Query \& Version):} Sistem menerima dua jenis input dari pengguna: (1) teks pertanyaan (\textit{query}), dan (2) parameter versi dokumen yang ingin ditelusuri (misalnya: "2024").
+    
+    \item \textbf{Pencarian Berbasis Metadata (Vector Search):} \textit{Query} dari pengguna diubah menjadi vektor. Sebelum sistem melakukan pencarian \textit{similarity} (kemiripan), sistem akan menerapkan \textit{Pre-filtering} pada ChromaDB. Logika ini diimplementasikan dengan meneruskan parameter versi ke dalam argumen \textit{filter} pada fungsi \textit{retriever}, sehingga ruang pencarian hanya dibatasi pada \textit{chunks} yang memiliki \textit{metadata} tahun "2024".
+    
+    \item \textbf{Injeksi Konteks (Prompt Construction):} Potongan teks (\textit{chunks}) hasil pencarian yang lolos dari proses \textit{filtering} kemudian digabungkan ke dalam \textit{template prompt}. \textit{Prompt} ini telah direkayasa (\textit{prompt engineering}) dengan instruksi tegas agar LLM hanya menjawab berdasarkan konteks yang diberikan dan menolak menjawab jika informasi tidak ditemukan dalam konteks.
+    
+    \item \textbf{Generasi Jawaban (Generation):} \textit{Prompt} yang sudah berisi konteks spesifik versi tersebut dikirimkan ke model Llama3:8b via Ollama. LLM kemudian mensintesis kalimat jawaban yang natural dan mengembalikannya kepada pengguna.
+\end{enumerate}
+
+\subsection{Logika Filtering Version-Aware}
+
+Inti dari implementasi \textit{version-aware} pada penelitian ini terletak pada manipulasi argumen pencarian pada modul \textit{retriever}. Sistem tidak melakukan pencarian pada seluruh isi \textit{database}, melainkan menggunakan struktur \textit{dictionary} untuk memfilter atribut dokumen secara ketat.
+
+Sebagai contoh logika, ketika pengguna ingin mencari aturan dari tahun 2024, sistem menerapkan konfigurasi filter \texttt{\{"tahun": "2024"\}}. Mekanisme ini memastikan bahwa sehebat apa pun tingkat kemiripan semantik (\textit{semantic similarity}) dari dokumen kalender akademik tahun 2022 terhadap pertanyaan pengguna, dokumen tersebut akan diabaikan oleh sistem pada tahap awal penarikan data (\textit{retrieval}). Pendekatan inilah yang secara signifikan meningkatkan nilai \textit{Context Precision} pada hasil evaluasi, karena sistem kebal terhadap ambiguitas dokumen lintas tahun.

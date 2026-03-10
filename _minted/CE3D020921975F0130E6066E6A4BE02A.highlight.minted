@@ -1,0 +1,26 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{run\PYGZus{}evaluation}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{judge\PYGZus{}llm} \PYG{o}{=} \PYG{n}{ChatOllama}\PYG{p}{(}\PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{llama3:8b}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{temperature}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n+nb}{format}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{json}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{judge\PYGZus{}embeddings} \PYG{o}{=} \PYG{n}{HuggingFaceEmbeddings}\PYG{p}{(}
+        \PYG{n}{model\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{intfloat/multilingual\PYGZhy{}e5\PYGZhy{}base}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Konversi data inferensi menjadi Dataset HuggingFace}
+    \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{Dataset}\PYG{o}{.}\PYG{n}{from\PYGZus{}dict}\PYG{p}{(}\PYG{n}{data\PYGZus{}dict}\PYG{p}{)}
+    \PYG{n}{results} \PYG{o}{=} \PYG{n}{evaluate}\PYG{p}{(}
+        \PYG{n}{dataset}\PYG{o}{=}\PYG{n}{dataset}\PYG{p}{,}
+        \PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}
+            \PYG{n}{faithfulness}\PYG{p}{,}
+            \PYG{n}{answer\PYGZus{}relevancy}\PYG{p}{,}
+            \PYG{n}{context\PYGZus{}precision}\PYG{p}{,}
+            \PYG{n}{context\PYGZus{}recall}\PYG{p}{,}
+        \PYG{p}{]}\PYG{p}{,}
+        \PYG{n}{llm}\PYG{o}{=}\PYG{n}{judge\PYGZus{}llm}\PYG{p}{,}
+        \PYG{n}{embeddings}\PYG{o}{=}\PYG{n}{judge\PYGZus{}embeddings}\PYG{p}{,}
+        \PYG{n}{run\PYGZus{}config}\PYG{o}{=}\PYG{n}{RunConfig}\PYG{p}{(}\PYG{n}{max\PYGZus{}workers}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{timeout}\PYG{o}{=}\PYG{l+m+mi}{300}\PYG{p}{)}
+    \PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Simpan laporan evaluasi ke spreadsheet}
+    \PYG{n}{df} \PYG{o}{=} \PYG{n}{results}\PYG{o}{.}\PYG{n}{to\PYGZus{}pandas}\PYG{p}{(}\PYG{p}{)}
+    \PYG{n}{df}\PYG{o}{.}\PYG{n}{to\PYGZus{}excel}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{laporan\PYGZus{}evaluasi\PYGZus{}ragas.xlsx}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{index}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\end{MintedVerbatim}

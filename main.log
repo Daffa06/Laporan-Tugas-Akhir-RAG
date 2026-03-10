@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2026.1.8)  12 FEB 2026 20:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2026.1.8)  10 MAR 2026 13:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1200,7 +1200,7 @@ Package: xparse 2024-08-16 L3 Experimental document command parser
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<Etc/LogoUP_silver.png, id=166, 153.6942pt x 111.7776pt>
+<Etc/LogoUP_silver.png, id=198, 153.6942pt x 111.7776pt>
 File: Etc/LogoUP_silver.png Graphic file (type png)
 <use Etc/LogoUP_silver.png>
 Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 207.
@@ -1244,7 +1244,7 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 207.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<Etc/LogoUP.png, id=175, 153.6942pt x 111.7776pt>
+<Etc/LogoUP.png, id=207, 153.6942pt x 111.7776pt>
 File: Etc/LogoUP.png Graphic file (type png)
 <use Etc/LogoUP.png>
 Package pdftex.def Info: Etc/LogoUP.png  used on input line 207.
@@ -1587,7 +1587,7 @@ Overfull \hbox (21.65918pt too wide) in paragraph at lines 4--5
 \OT1/ptm/m/it/10.95 chat-bot \OT1/ptm/m/n/10.95 den-gan ar-sitek-tur yang meng-in-te-grasikan metode kon-ven-sional den-gan \OT1/ptm/m/it/10.95 version-aware\OT1/ptm/m/n/10.95 . Metodologi
  []
 
-<BAB-3/rev2-RAG-diagram.png, id=392, 1125.20375pt x 742.775pt>
+<BAB-3/rev2-RAG-diagram.png, id=432, 1125.20375pt x 742.775pt>
 File: BAB-3/rev2-RAG-diagram.png Graphic file (type png)
 <use BAB-3/rev2-RAG-diagram.png>
 Package pdftex.def Info: BAB-3/rev2-RAG-diagram.png  used on input line 10.
@@ -1693,20 +1693,49 @@ Underfull \hbox (badness 3679) in paragraph at lines 61--61
 
 
 [15]
-Overfull \hbox (7.68129pt too wide) in paragraph at lines 76--77
-[]\OT1/ptm/m/n/10.95 Nilai \OT1/ptm/b/n/10.95 Faith-ful-ness \OT1/ptm/m/n/10.95 sebe-sar me-nun-jukkan bahwa halusi-nasi model, se-hingga jawa-ban yang diberikan
+Overfull \vbox (13.60005pt too high) detected at line 110
  []
 
-)
+
+Underfull \hbox (badness 7888) in paragraph at lines 116--117
+\OT1/ptm/m/n/10.95 2024/2025, Ujian Akhir Semester
+ []
+
+
 
 [16]
+Overfull \hbox (19.041pt too wide) in paragraph at lines 131--132
+\OT1/ptm/m/n/10.95 menye-le-saikan masalah tumpang-tindih in-for-masi (\OT1/ptm/m/it/10.95 in-for-ma-tion over-lap\OT1/ptm/m/n/10.95 ) pada doku-men in-sti-tusi akademik
+ []
+
+
+Overfull \hbox (5.34886pt too wide) in paragraph at lines 136--137
+[]\OT1/ptm/m/n/10.95 Berdasarkan ma-sukan dan ru-ang lingkup peneli-tian, im-ple-men-tasi sis-tem di-fokuskan pada pengem-
+ []
+
+
+
+[17]
+Overfull \hbox (8.27254pt too wide) in paragraph at lines 150--151
+[]\OT1/ptm/m/n/10.95 Implementasi pem-ros-esan per-tanyaan peng-guna mengikuti alur kerja yang ter-struk-tur un-tuk memas-
+ []
+
+LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 166.
+(/usr/share/texmf-dist/tex/latex/psnfss/omspcr.fd
+File: omspcr.fd 
+)
+LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 166.
+)
+
+[18]
 File: Etc/LogoUP_silver.png Graphic file (type png)
 <use Etc/LogoUP_silver.png>
 Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 228.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[17
+[19
 
 
 ]
@@ -1716,7 +1745,7 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 228.
 BAB V.
 )
 
-[18
+[20
 
 
 ]
@@ -1726,12 +1755,12 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 230.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[19
+[21
 
 
 ] (./main.bbl)
 
-[20
+[22
 
 ]
 File: Etc/LogoUP_silver.png Graphic file (type png)
@@ -1740,20 +1769,25 @@ Package pdftex.def Info: Etc/LogoUP_silver.png  used on input line 242.
 (pdftex.def)             Requested size: 284.52756pt x 206.93709pt.
 
 
-[21]
+[23]
 \openout2 = `Lampiran-A/Lampiran-A.aux'.
 
  (./Lampiran-A/Lampiran-A.tex
 LAMPIRAN A.
+
+Overfull \hbox (20.7719pt too wide) in paragraph at lines 4--5
+\OT1/ptm/m/it/10.95 version-aware \OT1/ptm/m/n/10.95 yang telah dikem-bangkan. Kode sum-ber dibagi men-jadi be-ber-apa modul utama berdasarkan
+ []
+
 \pydata@fh@_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted=\write9
 \openout9 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260212203437 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20260310131533 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
 (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260212203437 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20260310131533 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
- (./_minted/default.style.minted) (./_minted/F8675A43A9EC4EAC2F320A220329D1BB.highlight.minted
+ (./_minted/default.style.minted) (./_minted/57BFCCDE3F9612583AB6A1E618DAA3A1.highlight.minted
 LaTeX Font Info:    Trying to load font information for OT1+phv on input line 2.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
@@ -1774,6 +1808,10 @@ LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 8.
 LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 9.
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 10.
+ (/usr/share/texmf-dist/tex/latex/psnfss/ts1pcr.fd
+File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
+)
 LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 10.
 LaTeX Info: Oldstyle digits unavailable for family phv.
@@ -1788,10 +1826,6 @@ LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 15.
 LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 16.
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 16.
- (/usr/share/texmf-dist/tex/latex/psnfss/ts1pcr.fd
-File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)
 LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 17.
 LaTeX Info: Oldstyle digits unavailable for family phv.
@@ -1802,8 +1836,6 @@ LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 20.
 LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 21.
-LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 21.
 LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 22.
 LaTeX Info: Oldstyle digits unavailable for family phv.
@@ -1838,25 +1870,290 @@ LaTeX Info: Oldstyle digits unavailable for family phv.
             Default oldstyle digits used instead on input line 37.
 )
 
-[22
+[24
 
 
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<BAB-2/resnet receiver.png, id=481, 395.4775pt x 255.95625pt>
-File: BAB-2/resnet receiver.png Graphic file (type png)
-<use BAB-2/resnet receiver.png>
-Package pdftex.def Info: BAB-2/resnet receiver.png  used on input line 53.
-(pdftex.def)             Requested size: 197.73827pt x 127.9778pt.
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./_minted/16E8ABDD39D97640E083205DCDE689F4.highlight.minted
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 2.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 3.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 4.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 5.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 6.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 7.
+LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10.95> not available
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 8.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 8.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 9.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 10.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 11.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 12.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 13.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 14.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 15.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 16.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 17.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 18.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 19.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 20.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 21.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 22.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 23.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 24.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 25.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 26.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 27.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 28.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 29.
 )
 
-[23 <./BAB-2/resnet receiver.png>]
+[25]
+Overfull \hbox (2.20659pt too wide) in paragraph at lines 88--89
+[]\OT1/ptm/m/n/10.95 Skrip \OT1/pcr/m/n/10.95 app.py \OT1/ptm/m/n/10.95 meru-pakan inti dari sis-tem RAG yang diban-gun meng-gu-na-kan \OT1/ptm/m/it/10.95 frame-work \OT1/ptm/m/n/10.95 FastAPI.
+ []
+
+
+Overfull \hbox (4.30226pt too wide) in paragraph at lines 88--89
+\OT1/ptm/m/it/10.95 lar-ity search\OT1/ptm/m/n/10.95 ) pada Chro-maDB den-gan mem-per-tim-bangkan spe-si-fikasi versi doku-men (\OT1/ptm/m/it/10.95 version-aware\OT1/ptm/m/n/10.95 ),
+ []
+
+(./_minted/FBB008D371A729DB3A9A29FBE749485A.highlight.minted
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 2.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 3.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 4.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 5.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 6.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 7.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 8.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 9.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 10.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 11.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 12.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 13.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 14.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 15.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 16.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 17.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 18.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 19.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 20.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 21.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 22.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 23.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 24.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 25.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 26.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 27.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 28.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 29.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 30.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 31.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 32.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 33.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 34.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 35.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 36.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 37.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 38.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 39.
+)
+
+[26]
+
+[27] (./_minted/2310A9F41816C8210B2D7ED20DDD8988.highlight.minted
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 2.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 3.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 4.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 5.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 6.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 7.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 8.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 9.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 10.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 11.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 12.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 13.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 14.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 15.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 16.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 17.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 18.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 19.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 20.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 21.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 22.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 23.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 24.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 25.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 26.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 27.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 28.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 29.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 30.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 31.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 32.
+)
+
+[28]
+Overfull \hbox (8.79237pt too wide) in paragraph at lines 175--176
+\OT1/ptm/m/n/10.95 ini meng-gu-na-kan kerangka kerja RA-GAS (\OT1/ptm/m/it/10.95 Re-trieval Aug-mented Gen-er-a-tion As-sess-ment\OT1/ptm/m/n/10.95 ) un-tuk menghi-
+ []
+
+(./_minted/CE3D020921975F0130E6066E6A4BE02A.highlight.minted
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 2.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 3.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 4.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 5.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 6.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 7.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 8.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 9.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 10.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 11.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 12.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 13.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 14.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 15.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 16.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 17.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 18.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 19.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 20.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 21.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 22.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 23.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 24.
+LaTeX Info: Oldstyle digits unavailable for family phv.
+            Default oldstyle digits used instead on input line 25.
+))
+
+[29]
 \openout2 = `Lampiran-B/Lampiran-B.aux'.
 
  (./Lampiran-B/Lampiran-B.tex
 LAMPIRAN B.
 )
 
-[24
+[30
 
 
 
@@ -1867,21 +2164,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0002EB308D10202FC9DC84E0BC457820;5011.
+(rerunfilecheck)             Checksum: 5B2FD3DA0A23211F7F0DEB328D94841D;7210.
  ) 
 Here is how much of TeX's memory you used:
- 37379 strings out of 475171
- 769821 string characters out of 5767096
- 1372851 words of memory out of 5000000
- 59517 multiletter control sequences out of 15000+600000
- 588908 words of font info for 99 fonts, out of 8000000 for 9000
+ 37498 strings out of 475171
+ 772664 string characters out of 5767096
+ 1395851 words of memory out of 5000000
+ 59597 multiletter control sequences out of 15000+600000
+ 590559 words of font info for 105 fonts, out of 8000000 for 9000
  32 hyphenation exceptions out of 8191
- 103i,13n,106p,633b,1068s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (37 pages, 287179 bytes).
+ 103i,13n,106p,756b,1068s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (43 pages, 327040 bytes).
 PDF statistics:
- 564 PDF objects out of 1000 (max. 8388607)
- 477 compressed objects within 5 object streams
- 123 named destinations out of 1000 (max. 500000)
- 413 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 654 PDF objects out of 1000 (max. 8388607)
+ 556 compressed objects within 6 object streams
+ 144 named destinations out of 1000 (max. 500000)
+ 472 words of extra memory for PDF output out of 10000 (max. 10000000)
 

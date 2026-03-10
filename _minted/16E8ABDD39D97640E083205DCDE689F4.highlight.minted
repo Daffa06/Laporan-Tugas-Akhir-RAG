@@ -1,0 +1,30 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{client} \PYG{o}{=} \PYG{n}{chromadb}\PYG{o}{.}\PYG{n}{PersistentClient}\PYG{p}{(}\PYG{n}{path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{./chroma\PYGZus{}db}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{collection} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{get\PYGZus{}collection}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{docs\PYGZus{}versioned}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{all\PYGZus{}data} \PYG{o}{=} \PYG{n}{collection}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{include}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{metadatas}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Struktur data untuk mengelompokkan chunk berdasarkan nama file}
+    \PYG{n}{files\PYGZus{}summary} \PYG{o}{=} \PYG{n}{defaultdict}\PYG{p}{(}\PYG{k}{lambda}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{version}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Unknown}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{timestamp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{N/A}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{doc\PYGZus{}id}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{N/A}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{chunks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{pages}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n+nb}{set}\PYG{p}{(}\PYG{p}{)}
+    \PYG{p}{\PYGZcb{}}\PYG{p}{)}
+
+    \PYG{k}{for} \PYG{n}{meta} \PYG{o+ow}{in} \PYG{n}{all\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{metadatas}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{:}
+        \PYG{n}{fname} \PYG{o}{=} \PYG{n}{meta}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{filename}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{o+ow}{or} \PYG{n}{meta}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{source}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{o+ow}{or} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Tanpa Nama}\PYG{l+s+s2}{\PYGZdq{}}
+        \PYG{n}{clean\PYGZus{}fname} \PYG{o}{=} \PYG{n}{fname}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+
+        \PYG{n}{files\PYGZus{}summary}\PYG{p}{[}\PYG{n}{clean\PYGZus{}fname}\PYG{p}{]}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{chunks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{+}\PYG{o}{=} \PYG{l+m+mi}{1}
+
+        \PYG{c+c1}{\PYGZsh{} Ambil metadata umum pada temuan potongan teks (chunk) pertama}
+        \PYG{k}{if} \PYG{n}{files\PYGZus{}summary}\PYG{p}{[}\PYG{n}{clean\PYGZus{}fname}\PYG{p}{]}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{chunks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+            \PYG{n}{files\PYGZus{}summary}\PYG{p}{[}\PYG{n}{clean\PYGZus{}fname}\PYG{p}{]}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{version}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{meta}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{version}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{N/A}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+            \PYG{n}{files\PYGZus{}summary}\PYG{p}{[}\PYG{n}{clean\PYGZus{}fname}\PYG{p}{]}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{timestamp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{meta}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{timestamp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{N/A}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Hitung set halaman unik untuk memastikan kelengkapan parsing dokumen}
+        \PYG{k}{if} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{page}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{meta} \PYG{o+ow}{and} \PYG{n}{meta}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{page}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o+ow}{is} \PYG{o+ow}{not} \PYG{k+kc}{None}\PYG{p}{:}
+            \PYG{n}{files\PYGZus{}summary}
+            \PYG{p}{[}\PYG{n}{clean\PYGZus{}fname}\PYG{p}{]}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{pages}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{meta}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{page}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+
+\end{MintedVerbatim}

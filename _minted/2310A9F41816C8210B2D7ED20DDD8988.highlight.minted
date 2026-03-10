@@ -1,0 +1,33 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{ask\PYGZus{}rag}\PYG{p}{(}\PYG{n}{query}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{version}\PYG{p}{:} \PYG{n+nb}{str} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{latest}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} Mengirimkan kueri beserta parameter versi ke endpoint RAG backend}
+    \PYG{n}{payload} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{query}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{query}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{version}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{version}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{top\PYGZus{}k}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+m+mi}{5}\PYG{p}{\PYGZcb{}}
+    \PYG{n}{res} \PYG{o}{=} \PYG{n}{requests}\PYG{o}{.}\PYG{n}{post}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{http://localhost:8000/query}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{json}\PYG{o}{=}\PYG{n}{payload}\PYG{p}{,} \PYG{n}{timeout}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{res}\PYG{o}{.}\PYG{n}{json}\PYG{p}{(}\PYG{p}{)} \PYG{k}{if} \PYG{n}{res}\PYG{o}{.}\PYG{n}{status\PYGZus{}code} \PYG{o}{==} \PYG{l+m+mi}{200} \PYG{k}{else} \PYG{k+kc}{None}
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{version} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{latest}\PYG{l+s+s2}{\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} Konfigurasi versi pencarian bawaan}
+
+    \PYG{k}{while} \PYG{k+kc}{True}\PYG{p}{:}
+        \PYG{n}{cmd} \PYG{o}{=} \PYG{n}{Prompt}\PYG{o}{.}\PYG{n}{ask}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{[bold green] Pertanyaan / Perintah[/bold green]}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n}{cmd}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{(}\PYG{p}{)} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{exit}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{quit}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{:} \PYG{k}{break}
+
+        \PYG{k}{if} \PYG{n}{cmd}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{startswith}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{pakai }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{:}
+            \PYG{n}{version} \PYG{o}{=} \PYG{n}{cmd}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{pakai }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{p}{)}
+            \PYG{n}{console}\PYG{o}{.}\PYG{n}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ Versi diubah menjadi: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{version}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+            \PYG{k}{continue}
+
+        \PYG{n}{result} \PYG{o}{=} \PYG{n}{ask\PYGZus{}rag}\PYG{p}{(}\PYG{n}{cmd}\PYG{p}{,} \PYG{n}{version}\PYG{p}{)}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{result}\PYG{p}{:} \PYG{k}{continue}
+
+        \PYG{n}{answer} \PYG{o}{=} \PYG{n}{result}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{answer}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n}{provenance} \PYG{o}{=} \PYG{n}{result}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{provenance}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{p}{[}\PYG{p}{]}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Menampilkan jawaban utama dan tabel sumber rujukan}
+        \PYG{n}{console}\PYG{o}{.}\PYG{n}{print}\PYG{p}{(}\PYG{n}{Panel}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{answer}\PYG{p}{,} \PYG{n}{title}\PYG{o}{=}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ Jawaban (}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{version}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{)}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n}{provenance}\PYG{p}{:}
+            \PYG{n}{show\PYGZus{}provenance\PYGZus{}table}\PYG{p}{(}\PYG{n}{provenance}\PYG{p}{)}
+
+        \PYG{n}{log\PYGZus{}chat}\PYG{p}{(}\PYG{n}{cmd}\PYG{p}{,} \PYG{n}{version}\PYG{p}{,} \PYG{n}{answer}\PYG{p}{,} \PYG{n}{provenance}\PYG{p}{)}
+\end{MintedVerbatim}

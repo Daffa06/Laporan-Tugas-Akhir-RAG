@@ -1,0 +1,38 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{ingest\PYGZus{}file}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,} \PYG{n}{version}\PYG{p}{,} \PYG{n}{collection}\PYG{p}{,} \PYG{n}{model}\PYG{p}{,} \PYG{n}{manual\PYGZus{}name}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{WINDOW\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{15}
+    \PYG{n}{STRIDE} \PYG{o}{=} \PYG{l+m+mi}{5}
+
+    \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}
+    \PYG{k}{while} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{global\PYGZus{}lines}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{window\PYGZus{}items} \PYG{o}{=} \PYG{n}{global\PYGZus{}lines}\PYG{p}{[}\PYG{n}{i} \PYG{p}{:} \PYG{n}{i} \PYG{o}{+} \PYG{n}{WINDOW\PYGZus{}SIZE}\PYG{p}{]}
+        \PYG{n}{chunk\PYGZus{}text} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{p}{[}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{text}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{window\PYGZus{}items}\PYG{p}{]}\PYG{p}{)}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n}{start\PYGZus{}page} \PYG{o}{=} \PYG{n}{window\PYGZus{}items}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{page}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+        \PYG{n}{end\PYGZus{}page} \PYG{o}{=} \PYG{n}{window\PYGZus{}items}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{page}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+        \PYG{n}{page\PYGZus{}str} \PYG{o}{=} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{start\PYGZus{}page}\PYG{p}{)} \PYG{k}{if} \PYG{n}{start\PYGZus{}page} \PYG{o}{==} \PYG{n}{end\PYGZus{}page} \PYG{k}{else} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{start\PYGZus{}page}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZhy{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{end\PYGZus{}page}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{chunk\PYGZus{}text}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{30}\PYG{p}{:}
+            \PYG{n}{meta} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+                \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{doc\PYGZus{}id}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{doc\PYGZus{}uuid}\PYG{p}{,}
+                \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{name}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{name}\PYG{p}{,}
+                \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{version}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{version}\PYG{p}{,}
+                \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{timestamp}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{ts}\PYG{p}{,}
+                \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{page}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{page\PYGZus{}str}\PYG{p}{,}
+                \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{content}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{chunk\PYGZus{}text}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{n}{all\PYGZus{}chunk\PYGZus{}docs}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{chunk\PYGZus{}text}\PYG{p}{)}
+            \PYG{n}{all\PYGZus{}chunk\PYGZus{}metas}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{meta}\PYG{p}{)}
+            \PYG{n}{all\PYGZus{}chunk\PYGZus{}ids}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}
+                \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{doc\PYGZus{}uuid}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZus{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{total\PYGZus{}chunks}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+            \PYG{n}{total\PYGZus{}chunks} \PYG{o}{+}\PYG{o}{=} \PYG{l+m+mi}{1}
+        \PYG{n}{i} \PYG{o}{+}\PYG{o}{=} \PYG{n}{STRIDE}
+
+    \PYG{n}{embeddings} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{encode}\PYG{p}{(}\PYG{n}{all\PYGZus{}chunk\PYGZus{}docs}\PYG{p}{,} \PYG{n}{normalize\PYGZus{}embeddings}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+    \PYG{n}{collection}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+        \PYG{n}{documents}\PYG{o}{=}\PYG{n}{all\PYGZus{}chunk\PYGZus{}docs}\PYG{p}{,}
+        \PYG{n}{embeddings}\PYG{o}{=}\PYG{n}{embeddings}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
+        \PYG{n}{metadatas}\PYG{o}{=}\PYG{n}{all\PYGZus{}chunk\PYGZus{}metas}\PYG{p}{,}
+        \PYG{n}{ids}\PYG{o}{=}\PYG{n}{all\PYGZus{}chunk\PYGZus{}ids}
+    \PYG{p}{)}
+\end{MintedVerbatim}
